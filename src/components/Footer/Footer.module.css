@@ -1,0 +1,186 @@
+/* ============================================================
+   FOOTER — Responsive site footer
+   Design system: uviconwebdesign.md
+   4-col desktop → 2-col tablet → 1-col mobile
+   ============================================================ */
+
+.footer {
+  background-color: var(--color-surface-alt);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ---- Main content area ---- */
+.footerInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 20px 32px;
+}
+
+@media (min-width: 640px) {
+  .footerInner {
+    padding: 64px 40px 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footerInner {
+    padding: 80px 64px 40px;
+  }
+}
+
+/* ---- Grid layout ---- */
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+@media (min-width: 640px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+/* ---- Brand column ---- */
+.brandColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footerLogo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footerLogoImage {
+  height: 36px;
+  width: auto;
+}
+
+.brandTagline {
+  font-family: var(--font-body), sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  max-width: 280px;
+}
+
+/* Social icons row */
+.socialRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: border-color 150ms ease, color 150ms ease,
+    background-color 150ms ease;
+}
+
+.socialIcon:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-surface);
+}
+
+.socialIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---- Link columns ---- */
+.linkColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.columnTitle {
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0;
+}
+
+.columnLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footerLink {
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 150ms ease;
+  line-height: 1.5;
+}
+
+.footerLink:hover {
+  color: var(--color-primary);
+}
+
+/* ---- Bottom bar ---- */
+.bottomBar {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .bottomBar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.copyright {
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.bottomLinks {
+  display: flex;
+  gap: 24px;
+}
+
+.bottomLink {
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.bottomLink:hover {
+  color: var(--color-primary);
+}
