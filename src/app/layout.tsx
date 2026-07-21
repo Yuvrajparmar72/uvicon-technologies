@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Alegreya_Sans_SC, Tourney, Open_Sans } from "next/font/google";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 import "./globals.css";
 
 const alegreyaSansSC = Alegreya_Sans_SC({
@@ -26,10 +24,12 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Algo Trading Software India | Uvicon",
+  title: "Glassmorphism UI Design | Uvicon Technologies",
   description:
-    "Uvicon provides high-performance custom websites, software, applications, and algo trading solutions.",
+    "Uvicon Technologies builds high-performance websites, custom software, mobile applications, games, and algo trading solutions with modern Glassmorphism UI.",
 };
+
+import Header from "@/components/Header";
 
 export default function RootLayout({
   children,
@@ -38,13 +38,17 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="hi"
       className={`${alegreyaSansSC.variable} ${tourney.variable} ${openSans.variable}`}
     >
-      <body>
+      <body className="antialiased selection:bg-purple-500 selection:text-white">
+        {/* Background Animating Blobs */}
+        <div className="blob blob-1"></div>
+        <div className="blob blob-2"></div>
+        <div className="blob blob-3"></div>
+        
         <Header />
-        <main>{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
