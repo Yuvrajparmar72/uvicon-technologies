@@ -145,6 +145,7 @@ Load only the weights actually used (400, 500, 600, 700) with `font-display: swa
 - **Nav bar:** Sticky, Glassmorphism applied (translucent background with background-blur) with a 1px bottom border once scrolled.
 - **Expandable Sections (Accordions/Tabs/Read More):** Use heavily for "Progressive Disclosure." Keep the default view minimalist, but allow users to click/expand to read deep technical details.
 - **Forms:** Label above field always (never placeholder-only labels), visible error state in `--color-danger` with a specific message, not just a red border.
+- **Loading States (Skeleton UI):** Always implement a premium Skeleton UI (using `animate-pulse` and a subtle glassmorphism or semi-transparent background) for route transitions and data fetching. Use Next.js `loading.tsx` to display these instantly. Never use generic spinners or leave the screen blank during loading.
 - Respect `prefers-reduced-motion`: when set, disable scroll-triggered and looping animations; keep only essential state-change transitions.
 
 ---
@@ -288,6 +289,7 @@ Use these as the structural starting point for each page type, so new pages stay
 - [ ] FAQ block present with FAQPage schema (if page type requires it per Section 11)
 - [ ] Answer-first paragraph structure used in every content section
 - [ ] Images have accurate alt text, are compressed/next-gen format, lazy-loaded below the fold
+- [ ] Premium Skeleton UI (`loading.tsx`) implemented for data fetching and route transitions
 - [ ] Page tested visually at mobile/tablet/desktop breakpoints
 - [ ] Dark mode toggle checked — contrast still passes in dark mode
 - [ ] Keyboard focus states visible on every interactive element

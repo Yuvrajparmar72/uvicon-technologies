@@ -1,68 +1,58 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-alt: var(--color-surface-alt);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-brand-primary: var(--color-primary);
+  --color-brand-primary-hover: var(--color-primary-hover);
+  --color-brand-accent: var(--color-accent);
+  --color-brand-accent-hover: var(--color-accent-hover);
+  --color-border: var(--color-border);
+  --color-success: var(--color-success);
+  --color-danger: var(--color-danger);
+}
+
+:root {
+  /* Light mode tokens (default) */
+  --color-bg: #FDFBF7;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #F4F1EA;
+  --color-text-primary: #333333;
+  --color-text-secondary: #555555;
+  --color-primary: #003D3F;
+  --color-primary-hover: #00595C;
+  --color-accent: #FFC050;
+  --color-accent-hover: #E6A639;
+  --color-border: #E3E7E6;
+  --color-success: #1E8E5A;
+  --color-danger: #C1443B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode tokens */
+    --color-bg: #021213;
+    --color-surface: #062325;
+    --color-surface-alt: #0A3437;
+    --color-text-primary: #E0E0E0;
+    --color-text-secondary: #A0AAB2;
+    --color-primary: #2BA8A0;
+    --color-primary-hover: #3FC1B8;
+    --color-accent: #FFC050;
+    --color-accent-hover: #F0C685;
+    --color-border: #1D3634;
+    --color-success: #34C77D;
+    --color-danger: #E5645A;
+  }
+}
+
 body {
-  background-color: #0f172a;
-  color: #ffffff;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-}
-
-.blob {
-  position: fixed;
-  filter: blur(90px);
-  z-index: -1;
-  border-radius: 50%;
-  animation: moveBlobs 15s infinite alternate;
-  pointer-events: none;
-  opacity: 0.8;
-}
-
-.blob-1 {
-  top: -10%;
-  left: -10%;
-  width: 400px;
-  height: 400px;
-  background: #a855f7;
-}
-
-.blob-2 {
-  bottom: -10%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  background: #3b82f6;
-}
-
-.blob-3 {
-  top: 40%;
-  left: 50%;
-  width: 300px;
-  height: 300px;
-  background: #ec4899;
-  transform: translate(-50%, -50%);
-}
-
-.glass {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(16px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-}
-
-/* Header ke liye stronger glass effect — content scroll karne par blur hona chahiye, dikhai nahi dena chahiye */
-.glass-header {
-  background: rgba(15, 23, 42, 0.65) !important;
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  border: none !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-}
-
-@keyframes moveBlobs {
-  0% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.1) translate(30px, -30px); }
-  100% { transform: scale(0.9) translate(-30px, 30px); }
 }

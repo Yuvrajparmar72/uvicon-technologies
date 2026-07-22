@@ -30,6 +30,7 @@ export const metadata: Metadata = {
 };
 
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
@@ -41,14 +42,11 @@ export default function RootLayout({
       lang="hi"
       className={`${alegreyaSansSC.variable} ${tourney.variable} ${openSans.variable}`}
     >
-      <body className="antialiased selection:bg-purple-500 selection:text-white">
-        {/* Background Animating Blobs */}
-        <div className="blob blob-1"></div>
-        <div className="blob blob-2"></div>
-        <div className="blob blob-3"></div>
+      <body className="bg-background text-text-primary antialiased selection:bg-brand-accent selection:text-text-primary">
         
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
