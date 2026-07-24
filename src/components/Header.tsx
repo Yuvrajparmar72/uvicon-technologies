@@ -8,7 +8,7 @@ import { Menu, X, ShoppingCart, ChevronDown, Home, Layers, CreditCard, BookOpen,
 
 const navLinks = [
   { name: "Home", href: "/", icon: Home },
-  { 
+  {
     name: "Products", href: "/softwares",
     icon: Layers,
     subItems: [
@@ -19,7 +19,7 @@ const navLinks = [
     ]
   },
   { name: "Pricing", href: "/pricing", icon: CreditCard },
-  { 
+  {
     name: "Resources", href: "/resources",
     icon: BookOpen,
     subItems: [
@@ -28,7 +28,7 @@ const navLinks = [
       { name: "Refund Policy", href: "/refund-policy" }
     ]
   },
-  { 
+  {
     name: "More", href: "/more",
     icon: Grid,
     subItems: [
@@ -42,7 +42,23 @@ const navLinks = [
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const getPageTitle = (path: string) => {
     if (path === '/') return 'TECHNOLOGIES';
@@ -76,24 +92,33 @@ export default function Header() {
 
   return (
     <>
-      {/* Full-width Semantic Theme Background Bar */}
-      <div 
-        className="fixed left-0 right-0 top-0 w-full z-40 bg-brand-primary/65 backdrop-blur-md border-b border-border/20"
+      {/* Full-width Semantic Theme Background Bar (Visible when scrolled or when mobile menu open) */}
+      <div
+        className={`fixed left-0 right-0 top-0 w-full z-40 transition-all duration-300 ${isScrolled || isMobileMenuOpen
+          ? 'bg-[#004D50]/25 backdrop-blur-md border-b border-teal-400/20 opacity-100'
+          : 'bg-transparent border-none opacity-0 pointer-events-none'
+          }`}
         style={{ height: '5vh' }}
       ></div>
 
-      {/* Floating Glass Header Container */}
-      {/* Mobile/Tablet margins: 20px sides, 10px top. Desktop (lg): 50px sides, 15px top */}
-      <header className="fixed left-[20px] right-[20px] top-[10px] lg:left-[50px] lg:right-[50px] lg:top-[15px] z-50 transition-all duration-300">
-        
-        {/* Glass Background Layer */}
-        <div 
-          className="absolute inset-0 pointer-events-none bg-text-primary/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-border/50 border-t-border/80 rounded-2xl shadow-lg"
+      {/* Floating Header Container — Expanded width with reduced side margins */}
+      <header className="fixed top-[10px] lg:top-[15px] left-1/2 -translate-x-1/2 w-[calc(100%-25px)] sm:w-[calc(100%-32px)] max-w-[92rem] z-50 transition-all duration-300">
+
+        {/* Pure Glass Background Layer (Appears on scroll or when mobile menu open) */}
+        <div
+          className={`absolute inset-0 pointer-events-none transition-all duration-300 rounded-2xl ${isScrolled || isMobileMenuOpen
+            ? 'bg-white/10 dark:bg-white/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/20 border-t-white/40 shadow-lg opacity-100'
+            : 'bg-transparent border-transparent opacity-0 shadow-none'
+            }`}
           style={{ zIndex: -2 }}
         ></div>
 
-        {/* Decorative Background Icons (Inside Header, perfectly even distribution) */}
-        <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none opacity-25 blur-[2px]" style={{ zIndex: -1 }}>
+        {/* Decorative Background Icons (Visible when scrolled or when mobile menu open) */}
+        <div
+          className={`absolute inset-0 overflow-hidden rounded-2xl pointer-events-none blur-[2px] transition-opacity duration-300 ${isScrolled || isMobileMenuOpen ? 'opacity-25' : 'opacity-0'
+            }`}
+          style={{ zIndex: -1 }}
+        >
           <Code2 className="absolute top-[15%] left-[1%] w-4 h-4 md:w-5 md:h-5 lg:w-7 lg:h-7 text-white rotate-12" />
           <Cloud className="absolute bottom-[10%] left-[4%] hidden md:block md:w-7 md:h-7 lg:w-9 lg:h-9 text-white -rotate-12" />
           <Globe className="absolute top-[45%] left-[7%] w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white rotate-45" />
@@ -132,9 +157,9 @@ export default function Header() {
         {/* Header Content */}
         <div className="relative w-full px-4 sm:px-6 z-10">
           <div className="flex items-center h-[8vh]">
-            
+
             {/* Logo and Dynamic Title (Left Side) */}
-            <div className="flex-1 flex justify-start">
+            <div className="flex justify-start">
               <Link href="/" className="flex items-center gap-3">
                 <Image
                   src="/assets/icons/uvicon-technologies-logo.webp"
@@ -154,76 +179,78 @@ export default function Header() {
               </Link>
             </div>
 
-            {/* Desktop Menu (Center - Static) */}
-            <nav className="hidden lg:flex flex-1 justify-center">
-              <ul className="flex items-center gap-1 font-[family-name:var(--font-body)]">
-                {navLinks.map((link) => {
-                  const active = isLinkActive(link);
-                  return (
-                    <li key={link.name} className="relative group">
-                      <Link
-                        href={link.href}
-                        className={`flex items-center gap-1.5 transition-all text-[1.05rem] font-semibold tracking-wide mx-1 ${
-                          active 
-                            ? 'px-4 py-2 rounded-xl bg-text-primary/10 backdrop-blur-[16px] backdrop-saturate-[180%] border border-border/50 border-t-border/80 text-text-primary shadow-[0_4px_30px_rgba(0,0,0,0.1)]' 
-                            : 'px-2 py-2 text-text-secondary hover:text-text-primary'
-                        }`}
-                      >
-                        {active && <link.icon className="w-4 h-4 text-brand-accent" />}
-                        {link.name}
-                        {link.subItems && <ChevronDown className="w-4 h-4 opacity-70 group-hover:rotate-180 transition-transform duration-300" />}
-                      </Link>
-
-                    {/* Dropdown Submenu */}
-                    {link.subItems && (
-                      <div className="absolute left-1/2 -translate-x-1/2 pt-6 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
-                        <div 
-                          className="p-2 flex flex-col gap-1 bg-surface-alt/90 backdrop-blur-[16px] backdrop-saturate-[180%] border border-border/50 border-t-border/80 rounded-2xl shadow-lg"
+            {/* Desktop Navigation & Actions (Shifted Right Side) */}
+            <div className="hidden lg:flex flex-1 items-center justify-end gap-6 font-[family-name:var(--font-body)]">
+              {/* Menu Links Section - Pure Glassmorphism */}
+              <nav>
+                <ul className="h-[38px] p-0 flex items-center gap-0 rounded-xl border border-white/20 border-t-white/40 bg-transparent shadow-sm font-[family-name:var(--font-body)]">
+                  {navLinks.map((link, idx) => {
+                    const active = isLinkActive(link);
+                    const isFirst = idx === 0;
+                    const isLast = idx === navLinks.length - 1;
+                    return (
+                      <li key={link.name} className="relative group flex items-center h-full">
+                        <Link
+                          href={link.href}
+                          className={`h-full flex items-center gap-1.5 transition-all text-base font-semibold tracking-wide px-4 ${isFirst ? 'rounded-l-[9px]' : ''
+                            } ${isLast ? 'rounded-r-[9px]' : ''} ${active
+                              ? 'bg-white/20 dark:bg-white/15 backdrop-blur-[16px] backdrop-saturate-[180%] text-text-primary dark:text-white font-bold shadow-sm rounded-[12px]'
+                              : 'text-text-primary/80 hover:text-text-primary hover:bg-white/10'
+                            }`}
                         >
-                          {link.subItems.map((sub) => {
-                            const isSubActive = pathname === sub.href;
-                            return (
-                              <Link 
-                                key={sub.name} 
-                                href={sub.href} 
-                                className={`px-4 py-2.5 text-base rounded-xl transition-all whitespace-nowrap text-center font-medium ${
-                                  isSubActive ? 'bg-text-primary/10 backdrop-blur-[16px] backdrop-saturate-[180%] border border-border/50 border-t-border/80 text-text-primary font-semibold shadow-sm' : 'text-text-secondary hover:text-text-primary hover:bg-text-primary/5 border border-transparent'
-                                }`}
-                              >
-                                {sub.name}
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-                  </li>
-                )})}
-              </ul>
-            </nav>
+                          {active && <link.icon className="w-4 h-4 text-brand-accent" />}
+                          {link.name}
+                          {link.subItems && <ChevronDown className="w-4 h-4 opacity-70 group-hover:rotate-180 transition-transform duration-300" />}
+                        </Link>
 
-            {/* Action Buttons (Right Side Desktop) */}
-            <div className="hidden lg:flex flex-1 items-center justify-end gap-3 font-[family-name:var(--font-body)]">
-              <a href="https://marketplace.uvicon.in" target="_blank" rel="noopener noreferrer" className="h-[38px] w-[38px] flex items-center justify-center rounded-xl bg-text-primary/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-border/50 border-t-border/80 hover:bg-text-primary/10 transition-all shadow-sm">
-                <ShoppingCart className="w-5 h-5 text-text-primary" />
-              </a>
-              <Link href="/login" className="h-[38px] px-5 rounded-xl font-semibold text-text-primary bg-text-primary/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-border/50 border-t-border/80 hover:bg-text-primary/10 transition-all tracking-wide flex items-center justify-center shadow-sm">
-                Login
-              </Link>
-              <Link href="/signup" className="h-[38px] px-5 rounded-xl font-semibold text-text-primary bg-text-primary/10 backdrop-blur-[16px] backdrop-saturate-[180%] border border-brand-accent/30 border-t-brand-accent/50 hover:bg-brand-accent hover:text-[#021213] hover:border-transparent transition-all tracking-wide flex items-center justify-center shadow-[0_0_15px_rgba(255,192,80,0.15)]">
-                Sign Up
-              </Link>
+                        {/* Dropdown Submenu - Pure Glassmorphism */}
+                        {link.subItems && (
+                          <div className="absolute top-full left-0 pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <div
+                              className="p-2 flex flex-col gap-1 bg-white/15 dark:bg-black/20 backdrop-blur-[20px] backdrop-saturate-[180%] border border-white/25 border-t-white/45 rounded-2xl shadow-xl"
+                            >
+                              {link.subItems.map((sub) => {
+                                const isSubActive = pathname === sub.href;
+                                return (
+                                  <Link
+                                    key={sub.name}
+                                    href={sub.href}
+                                    className={`px-4 py-2.5 text-base rounded-xl transition-all whitespace-nowrap text-left font-medium ${isSubActive ? 'bg-white/20 dark:bg-white/15 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/25 border-t-white/45 text-text-primary dark:text-white font-semibold shadow-sm' : 'text-text-primary/80 hover:text-text-primary hover:bg-white/10 border border-transparent'
+                                      }`}
+                                  >
+                                    {sub.name}
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
+
+              {/* Action Buttons (Right Side) - Pure Glassmorphism */}
+              <div className="flex items-center gap-3 font-[family-name:var(--font-body)]">
+                <a href="https://marketplace.uvicon.in" target="_blank" rel="noopener noreferrer" className="h-[38px] w-[38px] flex items-center justify-center rounded-xl bg-white/10 dark:bg-white/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/20 border-t-white/40 hover:bg-white/20 transition-all shadow-sm">
+                  <ShoppingCart className="w-5 h-5 text-text-primary" />
+                </a>
+                <Link href="/login" className="h-[38px] px-5 rounded-xl font-semibold text-text-primary bg-white/10 dark:bg-white/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/20 border-t-white/40 hover:bg-white/20 transition-all tracking-wide flex items-center justify-center shadow-sm">
+                  Login
+                </Link>
+              </div>
             </div>
 
             {/* Mobile & Tablet Right Side (Login + Hamburger) */}
             <div className="lg:hidden flex items-center justify-end flex-1 gap-3 font-[family-name:var(--font-body)]">
-              <Link href="/login" className="h-[38px] px-4 rounded-xl font-semibold text-text-primary bg-text-primary/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-border/50 border-t-border/80 hover:bg-text-primary/10 transition-all tracking-wide flex items-center justify-center gap-2 shadow-sm">
+              <Link href="/login" className="h-[38px] px-4 rounded-xl font-semibold text-text-primary bg-text-primary/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/20 border-t-white/40 hover:bg-text-primary/10 transition-all tracking-wide flex items-center justify-center gap-2 shadow-sm">
                 <LogIn className="w-4 h-4" />
                 <span>Login</span>
               </Link>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="h-[38px] w-[38px] flex items-center justify-center text-text-primary hover:text-brand-accent focus:outline-none bg-text-primary/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-border/50 border-t-border/80 rounded-xl transition-all shadow-sm"
+                className="h-[38px] w-[38px] flex items-center justify-center text-text-primary hover:text-brand-accent focus:outline-none bg-text-primary/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/20 border-t-white/40 rounded-xl transition-all shadow-sm"
                 aria-label="Toggle Navigation"
               >
                 {isMobileMenuOpen ? (
@@ -238,14 +265,14 @@ export default function Header() {
           {/* Mobile/Tablet Menu Dropdown */}
           {isMobileMenuOpen && (
             <div className="absolute top-[100%] left-0 w-full mt-2 lg:hidden">
-              <div 
+              <div
                 className="p-5 rounded-2xl flex flex-col gap-2 font-[family-name:var(--font-body)] bg-text-primary/5 backdrop-blur-[24px] backdrop-saturate-[180%] border border-border/50 border-t-border/80 shadow-2xl"
               >
                 {navLinks.map((link) => {
                   const active = isLinkActive(link);
                   return (
                     <div key={link.name}>
-                      
+
                       {/* Main Link or Submenu Toggle */}
                       <button
                         onClick={() => {
@@ -255,11 +282,10 @@ export default function Header() {
                             setIsMobileMenuOpen(false);
                           }
                         }}
-                        className={`w-full flex items-center justify-between font-medium py-3 px-4 rounded-xl transition-all text-lg ${
-                          active
-                            ? 'bg-text-primary/10 backdrop-blur-[16px] backdrop-saturate-[180%] border border-border/50 border-t-border/80 text-text-primary shadow-sm'
-                            : 'text-text-primary hover:bg-text-primary/5 border border-transparent'
-                        }`}
+                        className={`w-full flex items-center justify-between font-medium py-3 px-4 rounded-xl transition-all text-lg ${active
+                          ? 'bg-text-primary/10 backdrop-blur-[16px] backdrop-saturate-[180%] border border-border/50 border-t-border/80 text-text-primary shadow-sm'
+                          : 'text-text-primary hover:bg-text-primary/5 border border-transparent'
+                          }`}
                       >
                         <div className="flex items-center gap-2">
                           {active && <link.icon className="w-5 h-5 text-brand-accent" />}
@@ -275,34 +301,34 @@ export default function Header() {
                         )}
                       </button>
 
-                    {/* Accordion Submenu Items */}
-                    {link.subItems && (
-                      <div 
-                        className={`overflow-hidden transition-all duration-300 ${openSubmenu === link.name ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}
-                      >
-                        <div className="border-l-2 border-white/10 ml-5 pl-4 flex flex-col gap-1 mt-1 mb-2">
-                          {link.subItems.map((sub) => {
-                            const isSubActive = pathname === sub.href;
-                            return (
-                              <Link
-                                key={sub.name}
-                                href={sub.href}
-                                className={`text-[1.05rem] font-medium py-2.5 transition-colors flex items-center gap-2 ${
-                                  isSubActive ? 'text-brand-accent' : 'text-text-secondary hover:text-text-primary'
-                                }`}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                              >
-                                <span className={`w-1.5 h-1.5 rounded-full ${isSubActive ? 'bg-brand-accent' : 'bg-text-primary/30'}`}></span>
-                                {sub.name}
-                              </Link>
-                            );
-                          })}
+                      {/* Accordion Submenu Items */}
+                      {link.subItems && (
+                        <div
+                          className={`overflow-hidden transition-all duration-300 ${openSubmenu === link.name ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}
+                        >
+                          <div className="border-l-2 border-white/10 ml-5 pl-4 flex flex-col gap-1 mt-1 mb-2">
+                            {link.subItems.map((sub) => {
+                              const isSubActive = pathname === sub.href;
+                              return (
+                                <Link
+                                  key={sub.name}
+                                  href={sub.href}
+                                  className={`text-[1.05rem] font-medium py-2.5 transition-colors flex items-center gap-2 ${isSubActive ? 'text-brand-accent' : 'text-text-secondary hover:text-text-primary'
+                                    }`}
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                  <span className={`w-1.5 h-1.5 rounded-full ${isSubActive ? 'bg-brand-accent' : 'bg-text-primary/30'}`}></span>
+                                  {sub.name}
+                                </Link>
+                              );
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                )})}
-                
+                      )}
+                    </div>
+                  )
+                })}
+
                 {/* Bottom Action Buttons */}
                 <div className="pt-4 flex gap-3 border-t border-border mt-2">
                   <Link href="/signup" className="flex-1 h-[42px] rounded-xl font-semibold text-text-primary bg-text-primary/10 backdrop-blur-[16px] backdrop-saturate-[180%] border border-brand-accent/30 border-t-brand-accent/50 hover:bg-brand-accent hover:text-[#021213] hover:border-transparent transition-all tracking-wide flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(255,192,80,0.15)]" onClick={() => setIsMobileMenuOpen(false)}>

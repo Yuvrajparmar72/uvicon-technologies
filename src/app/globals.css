@@ -34,9 +34,9 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark mode tokens */
-    --color-bg: #021213;
-    --color-surface: #062325;
-    --color-surface-alt: #0A3437;
+    --color-bg: #000B0C;
+    --color-surface: #001517;
+    --color-surface-alt: #001E20;
     --color-text-primary: #E0E0E0;
     --color-text-secondary: #A0AAB2;
     --color-primary: #2BA8A0;

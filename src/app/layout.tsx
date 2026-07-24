@@ -24,9 +24,9 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Glassmorphism UI Design | Uvicon Technologies",
+  title: "Custom Web & App Development, Algo Trading Software | Uvicon Technologies",
   description:
-    "Uvicon Technologies builds high-performance websites, custom software, mobile applications, games, and algo trading solutions with modern Glassmorphism UI.",
+    "Uvicon Technologies builds custom websites, mobile apps, games, and algorithmic trading software with premium design. Explore our products and services.",
 };
 
 import Header from "@/components/Header";
@@ -39,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="hi"
+      lang="en"
       className={`${alegreyaSansSC.variable} ${tourney.variable} ${openSans.variable}`}
     >
       <body className="bg-background text-text-primary antialiased selection:bg-brand-accent selection:text-text-primary">
