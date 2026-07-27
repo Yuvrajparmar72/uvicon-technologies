@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, ArrowUpRight, Sparkles, Store, ChevronRight, TrendingUp, Globe, Smartphone, Gamepad2, Zap } from "lucide-react";
 import CoreExpertiseSection from "@/components/CoreExpertiseSection";
+import FeaturedProjectsSection from "@/components/FeaturedProjectsSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import TechStackSection from "@/components/TechStackSection";
 
@@ -465,6 +466,7 @@ export default function Page() {
                 <CoreExpertiseSection />
                 <WhyChooseUsSection />
                 <TechStackSection />
+                <FeaturedProjectsSection />
             </div>
         </main>
     );

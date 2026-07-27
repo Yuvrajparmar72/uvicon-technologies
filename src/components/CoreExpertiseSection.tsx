@@ -54,7 +54,7 @@ export default function CoreExpertiseSection() {
 
     return (
         <section
-            className="w-full relative pt-8 pb-16 sm:py-24 lg:py-32 px-5 sm:px-10 lg:px-16 overflow-hidden font-[family-name:var(--font-body)] transition-colors duration-500"
+            className="w-full relative pt-8 pb-10 sm:pt-16 sm:pb-14 lg:pt-24 lg:pb-18 px-5 sm:px-10 lg:px-16 overflow-hidden font-[family-name:var(--font-body)] transition-colors duration-500"
         >
             {/* Stroke watermark CSS only — background comes from unified page canvas */}
             <style dangerouslySetInnerHTML={{ __html: `
@@ -70,17 +70,6 @@ export default function CoreExpertiseSection() {
 
             {/* 3D Glass Bolt Accents (Background) */}
             <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-                {/* Bolt behind the left tabs */}
-                <div className="absolute top-[35%] -left-8 sm:-left-16 lg:-left-20 w-48 sm:w-64 lg:w-80 opacity-40 dark:opacity-60 drop-shadow-[0_15px_25px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_15px_25px_rgba(0,0,0,0.3)]">
-                    <Image
-                        src="/assets/icons/uvicon-bolt-3.webp"
-                        alt="Uvicon 3D glass bolt accent"
-                        width={320}
-                        height={320}
-                        className="w-full h-auto object-contain transform -rotate-[35deg]"
-                    />
-                </div>
-                
                 {/* Bolt behind the right card */}
                 <div className="absolute bottom-[2%] -right-10 sm:-right-16 lg:-right-24 w-52 sm:w-72 lg:w-[22rem] opacity-45 dark:opacity-70 drop-shadow-[0_15px_25px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_15px_25px_rgba(0,0,0,0.3)]">
                     <Image
@@ -107,12 +96,23 @@ export default function CoreExpertiseSection() {
                     
                     {/* Watermark and H2 Wrapper to guarantee perfect vertical alignment */}
                     <div className="relative w-full flex justify-start sm:justify-center items-center">
-                        {/* Big Hollow Outlined Text Watermark (Centered exactly behind H2) */}
-                        <span
-                            className="absolute top-1/2 left-0 sm:left-1/2 sm:-translate-x-1/2 -translate-y-1/2 text-[64px] sm:text-[120px] lg:text-[170px] font-black tracking-widest uppercase pointer-events-none select-none text-transparent stroke-watermark whitespace-nowrap font-[family-name:var(--font-heading-main)] z-0"
-                        >
-                            EXPERTISE
-                        </span>
+                        {/* Big Hollow Outlined Text Watermark + Left Bolt Accent next to letter 'E' */}
+                        <div className="absolute top-1/2 left-0 sm:left-1/2 sm:-translate-x-1/2 -translate-y-1/2 pointer-events-none select-none flex items-center z-0">
+                            {/* Smaller Left Bolt Accent placed directly on the left side of 'E' */}
+                            <div className="absolute right-[calc(100%-4px)] sm:right-full mr-1 sm:mr-3 top-1/2 -translate-y-1/2 w-10 sm:w-16 lg:w-22 opacity-70 dark:opacity-90 drop-shadow-[0_8px_16px_rgba(0,0,0,0.2)]">
+                                <Image
+                                    src="/assets/icons/uvicon-bolt-3.webp"
+                                    alt="Uvicon 3D glass bolt accent"
+                                    width={140}
+                                    height={140}
+                                    className="w-full h-auto object-contain transform -rotate-[25deg]"
+                                />
+                            </div>
+
+                            <span className="text-[64px] sm:text-[120px] lg:text-[170px] font-black tracking-widest uppercase text-transparent stroke-watermark whitespace-nowrap font-[family-name:var(--font-heading-main)]">
+                                EXPERTISE
+                            </span>
+                        </div>
 
                         {/* Main H2 Heading */}
                         <h2 className="text-[32px] sm:text-[46px] lg:text-[56px] font-bold text-[#003D3F] dark:text-[#3FC1B8] font-[family-name:var(--font-heading-section)] relative z-10 leading-tight">

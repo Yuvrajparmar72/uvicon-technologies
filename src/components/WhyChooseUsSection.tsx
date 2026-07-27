@@ -129,7 +129,7 @@ export default function WhyChooseUsSection() {
     ];
 
     return (
-        <section className="w-full relative pt-12 pb-20 sm:py-24 lg:py-32 px-5 sm:px-10 lg:px-16 overflow-hidden font-[family-name:var(--font-body)] transition-colors duration-500">
+        <section className="w-full relative pt-10 sm:pt-14 lg:pt-20 pb-20 sm:pb-24 lg:pb-32 px-5 sm:px-10 lg:px-16 overflow-hidden font-[family-name:var(--font-body)] transition-colors duration-500">
             {/* 3D Glass Marbles & Bolts Background System (Fully Distributed across Height) */}
             <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
 

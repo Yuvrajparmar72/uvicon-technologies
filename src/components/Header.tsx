@@ -102,7 +102,7 @@ export default function Header() {
       ></div>
 
       {/* Floating Header Container — Expanded width with reduced side margins */}
-      <header className="fixed top-[10px] lg:top-[15px] left-1/2 -translate-x-1/2 w-[calc(100%-25px)] sm:w-[calc(100%-32px)] max-w-[92rem] z-50 transition-all duration-300">
+      <header className="fixed top-[10px] lg:top-[15px] left-1/2 -translate-x-1/2 w-[calc(100%-16px)] sm:w-[calc(100%-32px)] max-w-[92rem] z-50 transition-all duration-300">
 
         {/* Pure Glass Background Layer (Appears on scroll or when mobile menu open) */}
         <div
