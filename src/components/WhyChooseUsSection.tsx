@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { 
     Zap, 
     ShieldCheck, 
@@ -17,6 +18,13 @@ import {
 } from "lucide-react";
 
 export default function WhyChooseUsSection() {
+    const processSectionRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: processSectionRef,
+        offset: ["start start", "end end"]
+    });
+    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+
     const bentoCards = [
         {
             id: "card-1",
@@ -278,23 +286,99 @@ export default function WhyChooseUsSection() {
                 </div>
 
                 {/* ===== PART 2: 4-STEP DEVELOPMENT PROCESS ===== */}
-                <div className="w-full relative">
+
+                {/* Mobile & Tablet (< lg): Sticky Horizontal Scroll Sequence on Vertical Scroll */}
+                <div ref={processSectionRef} className="w-full relative lg:hidden h-[260vh] sm:h-[280vh]">
+                    <div className="sticky top-[75px] sm:top-[85px] h-[calc(100vh-85px)] min-h-[500px] flex flex-col justify-between overflow-hidden py-4">
+                        
+                        {/* Process Section Title - Pinned Sticky Below Header */}
+                        <div className="text-left sm:text-center w-full max-w-3xl mx-auto mb-3 sm:mb-5 shrink-0 relative z-10 px-1">
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#003D3F]/8 dark:bg-white/8 backdrop-blur-md border border-[#FFC050]/30 shadow-sm mb-2">
+                                <Sparkles className="w-3.5 h-3.5 text-[#FFC050]" />
+                                <span className="text-xs font-bold uppercase tracking-wider text-[#003D3F]/80 dark:text-white/80">
+                                    How We Build
+                                </span>
+                            </div>
+                            <h3 className="text-2xl sm:text-3xl font-bold text-[#003D3F] dark:text-white font-[family-name:var(--font-heading-section)]">
+                                Our 4-Step Agile Process
+                            </h3>
+                        </div>
+
+                        {/* Horizontal Cards Motion Track */}
+                        <div className="flex-1 flex items-center overflow-hidden w-full relative">
+                            <motion.div style={{ x }} className="flex gap-4 sm:gap-6 pl-1 pr-12 w-max">
+                                {processSteps.map((stepItem, idx) => {
+                                    const StepIcon = stepItem.icon;
+                                    return (
+                                        <div
+                                            key={stepItem.step}
+                                            className="w-[83vw] sm:w-[320px] shrink-0 bg-white/80 dark:bg-[#002224]/90 backdrop-blur-xl rounded-3xl p-6 border border-[#003D3F]/20 dark:border-white/15 shadow-[0_15px_35px_rgba(0,61,63,0.08)] dark:shadow-[0_15px_35px_rgba(0,0,0,0.4)] flex flex-col justify-between relative group overflow-hidden"
+                                        >
+                                            <div className="relative z-10">
+                                                {/* Step Counter Badge */}
+                                                <div className="flex items-center justify-between mb-4">
+                                                    <span className="text-2xl font-black text-[#00595C] dark:text-[#FFC050] font-[family-name:var(--font-heading-main)]">
+                                                        {stepItem.step}
+                                                    </span>
+                                                    <div className="w-10 h-10 rounded-xl bg-[#003D3F]/6 dark:bg-white/8 flex items-center justify-center text-[#003D3F] dark:text-white shrink-0">
+                                                        <StepIcon className="w-5 h-5" />
+                                                    </div>
+                                                </div>
+
+                                                <h4 className="text-lg font-bold text-[#003D3F] dark:text-white font-[family-name:var(--font-heading-section)]">
+                                                    {stepItem.title}
+                                                </h4>
+                                                <p className="text-xs sm:text-sm text-[#003D3F]/75 dark:text-white/75 leading-relaxed mt-2">
+                                                    {stepItem.desc}
+                                                </p>
+                                            </div>
+
+                                            <div className="w-full mt-6 pt-4 border-t border-[#003D3F]/10 dark:border-white/10 flex items-center justify-between text-xs font-bold text-[#00595C] dark:text-[#FFC050] relative z-10">
+                                                <span>Phase {idx + 1} of 4</span>
+                                                <ArrowUpRight className="w-4 h-4" />
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </motion.div>
+                        </div>
+
+                        {/* Visual Progress Dots & Hint at bottom */}
+                        <div className="w-full flex items-center justify-between px-2 pt-2 shrink-0">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#00595C] dark:text-[#FFC050]">
+                                Scroll down to explore steps
+                            </span>
+                            <div className="flex items-center gap-1.5">
+                                {[1, 2, 3, 4].map((stepNum) => (
+                                    <div 
+                                        key={stepNum} 
+                                        className="w-2.5 h-2.5 rounded-full bg-[#00595C]/40 dark:bg-white/40 border border-[#FFC050]/40"
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                {/* Desktop (lg:): Classic Grid Layout */}
+                <div className="hidden lg:block w-full relative">
 
                     {/* Process Section Title */}
-                    <div className="text-left sm:text-center w-full max-w-3xl mx-auto mb-12 sm:mb-16 relative z-10">
+                    <div className="text-center w-full max-w-3xl mx-auto mb-16 relative z-10">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#003D3F]/8 dark:bg-white/8 backdrop-blur-md border border-[#FFC050]/30 shadow-sm mb-3">
                             <Sparkles className="w-3.5 h-3.5 text-[#FFC050]" />
                             <span className="text-xs font-bold uppercase tracking-wider text-[#003D3F]/80 dark:text-white/80">
                                 How We Build
                             </span>
                         </div>
-                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#003D3F] dark:text-white font-[family-name:var(--font-heading-section)]">
+                        <h3 className="text-3xl lg:text-4xl font-bold text-[#003D3F] dark:text-white font-[family-name:var(--font-heading-section)]">
                             Our 4-Step Agile Process
                         </h3>
                     </div>
 
                     {/* 4 Process Cards Grid */}
-                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+                    <div className="w-full grid grid-cols-4 gap-6 relative">
                         {processSteps.map((stepItem, idx) => {
                             const StepIcon = stepItem.icon;
                             return (
@@ -335,3 +419,4 @@ export default function WhyChooseUsSection() {
         </section>
     );
 }
+
