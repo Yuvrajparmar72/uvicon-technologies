@@ -83,24 +83,84 @@ export default function FeaturedProjectsSection() {
                 }
             `}} />
 
-            {/* Ambient Background Accents */}
-            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+            {/* Ambient Background Accents — 3D Bolts, Glass Marble Balls & Radial Glows */}
+            <div
+                className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
+                style={{
+                    WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
+                    maskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)"
+                }}
+            >
+                {/* Radial Glow 1 (Top Left) */}
                 <div
-                    className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] rounded-full blur-[110px] opacity-30 dark:opacity-50 z-0"
+                    className="absolute top-[15%] left-[-10%] w-[550px] h-[550px] rounded-full blur-[110px] opacity-35 dark:opacity-55 z-0"
                     style={{
-                        background: "radial-gradient(circle, rgba(0, 180, 170, 0.3) 0%, rgba(255, 192, 80, 0.15) 50%, transparent 80%)"
+                        background: "radial-gradient(circle, rgba(0, 180, 170, 0.4) 0%, rgba(255, 192, 80, 0.2) 50%, transparent 80%)"
                     }}
                 />
+
+                {/* Radial Glow 2 (Bottom Right) */}
+                <div
+                    className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[120px] opacity-30 dark:opacity-50 z-0"
+                    style={{
+                        background: "radial-gradient(circle, rgba(255, 192, 80, 0.3) 0%, rgba(0, 180, 170, 0.2) 50%, transparent 80%)"
+                    }}
+                />
+
+                {/* 3D Glass Bolt 1 (Top Right Background) */}
+                <div className="absolute top-[6%] right-[2%] sm:right-[5%] w-36 sm:w-52 lg:w-64 pointer-events-none opacity-60 dark:opacity-85 drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] dark:drop-shadow-[0_25px_45px_rgba(0,0,0,0.5)] z-0">
+                    <Image
+                        src="/assets/icons/uvicon-bolt-2.webp"
+                        alt="3D Glass Bolt Accent"
+                        width={280}
+                        height={280}
+                        className="w-full h-auto object-contain transform rotate-12"
+                    />
+                </div>
+
+                {/* 3D Glass Bolt 2 (Middle Left Background) */}
+                <div className="absolute top-[42%] -left-6 sm:left-[2%] w-32 sm:w-48 lg:w-60 pointer-events-none opacity-50 dark:opacity-80 drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] dark:drop-shadow-[0_25px_45px_rgba(0,0,0,0.5)] z-0">
+                    <Image
+                        src="/assets/icons/uvicon-bolt-3.webp"
+                        alt="3D Glass Bolt Accent"
+                        width={260}
+                        height={260}
+                        className="w-full h-auto object-contain transform -rotate-15"
+                    />
+                </div>
+
+                {/* 3D Glass Bolt 3 (Bottom Right Background) */}
+                <div className="absolute bottom-[6%] right-[1%] sm:right-[4%] w-36 sm:w-52 lg:w-64 pointer-events-none opacity-55 dark:opacity-85 drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] dark:drop-shadow-[0_25px_45px_rgba(0,0,0,0.5)] z-0">
+                    <Image
+                        src="/assets/icons/uvicon-bolt-4.webp"
+                        alt="3D Glass Bolt Accent"
+                        width={280}
+                        height={280}
+                        className="w-full h-auto object-contain transform rotate-45"
+                    />
+                </div>
+
+                {/* 3D Glass Marble Ball 1 (Top Left Header Orb) */}
+                <div className="absolute top-[14%] left-[6%] sm:left-[12%] w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-white/70 via-[#FFC050]/40 to-[#00595C]/80 border border-white/60 shadow-[inset_-6px_-6px_15px_rgba(0,61,63,0.5),0_12px_25px_rgba(0,0,0,0.25)] backdrop-blur-md opacity-80 dark:opacity-90" />
+
+                {/* 3D Glass Marble Ball 2 (Middle Right Large Orb) */}
+                <div className="absolute top-[46%] right-[8%] sm:right-[12%] w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-gradient-to-tr from-[#003D3F]/80 via-[#00B4AA]/50 to-white/70 border border-white/50 shadow-[inset_-8px_-8px_20px_rgba(0,0,0,0.6),0_15px_30px_rgba(0,180,170,0.3)] backdrop-blur-md opacity-75 dark:opacity-90" />
+
+                {/* 3D Glass Marble Ball 3 (Bottom Left Gold Orb) */}
+                <div className="absolute bottom-[16%] left-[4%] sm:left-[8%] w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#FFC050]/80 via-[#e0a840]/40 to-white/70 border border-white/60 shadow-[inset_-4px_-4px_12px_rgba(0,61,63,0.4),0_10px_20px_rgba(255,192,80,0.3)] backdrop-blur-md opacity-80 dark:opacity-90" />
+
+                {/* 3D Glass Marble Ball 4 (Center Accent Orb) */}
+                <div className="absolute top-[28%] right-[22%] w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-bl from-white/80 via-[#2BA8A0]/50 to-[#002224]/80 border border-white/70 shadow-[inset_-3px_-3px_10px_rgba(0,0,0,0.5),0_8px_16px_rgba(0,0,0,0.2)] backdrop-blur-md opacity-70 dark:opacity-85" />
             </div>
 
-            <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
+            <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-start">
                 
                 {/* Header Container */}
-                <div className="relative text-left sm:text-center w-full max-w-5xl mb-10 sm:mb-14 flex flex-col items-start sm:items-center justify-center">
+                <div className="relative text-left w-full max-w-5xl mb-10 sm:mb-14 flex flex-col items-start justify-start">
                     
                     {/* Watermark + H2 Wrapper */}
-                    <div className="relative w-full flex justify-start sm:justify-center items-center">
-                        <span className="absolute top-1/2 left-0 sm:left-1/2 sm:-translate-x-1/2 -translate-y-1/2 text-[44px] sm:text-[110px] lg:text-[160px] font-black tracking-widest uppercase pointer-events-none select-none text-transparent stroke-watermark-projects whitespace-nowrap font-[family-name:var(--font-heading-main)] z-0">
+                    <div className="relative w-full flex justify-start items-center">
+                        <span className="absolute top-1/2 left-0 -translate-y-1/2 text-[44px] sm:text-[110px] lg:text-[160px] font-black tracking-widest uppercase pointer-events-none select-none text-transparent stroke-watermark-projects whitespace-nowrap font-[family-name:var(--font-heading-main)] z-0">
                             PORTFOLIO
                         </span>
 
@@ -110,12 +170,12 @@ export default function FeaturedProjectsSection() {
                     </div>
 
                     {/* Subtitle */}
-                    <p className="text-[#003D3F]/85 dark:text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed max-w-3xl text-left sm:text-center font-medium font-[family-name:var(--font-body)] mt-2.5 sm:mt-4 relative z-10">
+                    <p className="text-[#003D3F]/85 dark:text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed max-w-3xl text-left font-medium font-[family-name:var(--font-body)] mt-2.5 sm:mt-4 relative z-10">
                         Explore real-world digital ecosystems, algorithmic trading engines, and enterprise web platforms custom built by Uvicon Technologies.
                     </p>
 
                     {/* Filter Pills */}
-                    <div className="flex flex-wrap items-center justify-start sm:justify-center gap-2 sm:gap-3 mt-6 sm:mt-8 relative z-10">
+                    <div className="flex flex-wrap items-center justify-start gap-2 sm:gap-3 mt-6 sm:mt-8 relative z-10">
                         {[
                             { label: "All Projects", filter: "all" },
                             { label: "CRM & SaaS", filter: "crm" },

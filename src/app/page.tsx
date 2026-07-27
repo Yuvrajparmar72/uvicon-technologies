@@ -5,7 +5,10 @@ import { Mail, ArrowUpRight, Sparkles, Store, ChevronRight, TrendingUp, Globe, S
 import CoreExpertiseSection from "@/components/CoreExpertiseSection";
 import FeaturedProjectsSection from "@/components/FeaturedProjectsSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import TechStackSection from "@/components/TechStackSection";
+import FaqSection from "@/components/FaqSection";
+import FinalCtaSection from "@/components/FinalCtaSection";
 
 export default function Page() {
     // Inner Ring Tech Icons (6 items evenly spaced at 60deg intervals)
@@ -467,6 +470,9 @@ export default function Page() {
                 <WhyChooseUsSection />
                 <TechStackSection />
                 <FeaturedProjectsSection />
+                <TestimonialsSection />
+                <FaqSection />
+                <FinalCtaSection />
             </div>
         </main>
     );

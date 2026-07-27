@@ -15,7 +15,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="w-full relative z-30 mt-20 font-[family-name:var(--font-body)]">
+    <footer className="w-full relative z-30 -mt-20 sm:-mt-24 lg:-mt-32 font-[family-name:var(--font-body)]">
       
       {/* Floating CTA Section */}
       <div className="w-full px-4 sm:px-6 lg:px-16 relative z-40 -mb-24 sm:-mb-16">
