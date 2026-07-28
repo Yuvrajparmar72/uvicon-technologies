@@ -205,7 +205,7 @@ export default function FeaturedProjectsSection() {
                         return (
                             <div
                                 key={project.id}
-                                className="w-full bg-white/70 dark:bg-[#002224]/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#003D3F]/15 dark:border-white/15 shadow-[0_20px_50px_rgba(0,61,63,0.08)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.4)] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group relative overflow-hidden transition-all duration-300 hover:border-[#00595C]/40 dark:hover:border-[#FFC050]/40"
+                                className="w-full bg-white/70 dark:bg-[#002224]/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#003D3F]/15 dark:border-white/15 shadow-[0_20px_50px_rgba(0,61,63,0.08)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.4)] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden"
                             >
                                 
                                 {/* Info Side (lg:col-span-6) */}
@@ -213,7 +213,7 @@ export default function FeaturedProjectsSection() {
                                     
                                     {/* App Icon + Badge */}
                                     <div className="flex items-center gap-3.5 mb-4">
-                                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white dark:bg-[#003D3F] p-2 shadow-md border border-[#003D3F]/15 dark:border-white/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white dark:bg-[#003D3F] p-2 shadow-md border border-[#003D3F]/15 dark:border-white/20 flex items-center justify-center shrink-0">
                                             <Image
                                                 src={project.icon}
                                                 alt={project.title}
@@ -278,15 +278,15 @@ export default function FeaturedProjectsSection() {
                                 </div>
 
                                 {/* Preview Image Side (lg:col-span-6) */}
-                                <div className={`relative w-full h-[260px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/15 group-hover:shadow-2xl transition-all ${isEven ? "order-1 lg:order-2 lg:col-span-6" : "order-1 lg:order-1 lg:col-span-6"}`}>
+                                <div className={`relative w-full h-[260px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/15 ${isEven ? "order-1 lg:order-2 lg:col-span-6" : "order-1 lg:order-1 lg:col-span-6"}`}>
                                     <Image
                                         src={project.image}
                                         alt={project.title}
                                         fill
-                                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                                        className="object-cover object-center"
                                         sizes="(max-width: 1024px) 100vw, 50vw"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity pointer-events-none" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 pointer-events-none" />
                                     
                                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
                                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-xs font-semibold">

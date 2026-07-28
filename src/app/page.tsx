@@ -2,13 +2,13 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, ArrowUpRight, Sparkles, Store, ChevronRight, TrendingUp, Globe, Smartphone, Gamepad2, Zap } from "lucide-react";
-import CoreExpertiseSection from "@/components/CoreExpertiseSection";
-import FeaturedProjectsSection from "@/components/FeaturedProjectsSection";
-import WhyChooseUsSection from "@/components/WhyChooseUsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import TechStackSection from "@/components/TechStackSection";
-import FaqSection from "@/components/FaqSection";
-import FinalCtaSection from "@/components/FinalCtaSection";
+import CoreExpertiseSection from "@/components/sections/CoreExpertiseSection";
+import FeaturedProjectsSection from "@/components/sections/FeaturedProjectsSection";
+import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import TechStackSection from "@/components/sections/TechStackSection";
+import FaqSection from "@/components/sections/FaqSection";
+import FinalCtaSection from "@/components/sections/FinalCtaSection";
 
 export default function Page() {
     // Inner Ring Tech Icons (6 items evenly spaced at 60deg intervals)
@@ -168,7 +168,7 @@ export default function Page() {
 
                         {/* H1 Main Headline — SEO keyword-rich, answer-first */}
                         <h1 className="text-[28px] sm:text-[40px] lg:text-[54px] xl:text-[58px] font-bold text-[#003D3F] dark:text-white tracking-wide font-[family-name:var(--font-heading-main)] leading-[1.15] lg:leading-[1.1] drop-shadow-[0_1px_2px_rgba(0,0,0,0.08)] dark:drop-shadow-md">
-                            Custom Websites, Apps & Algo Trading Software
+                            Premium Custom Web, App & Trading Solutions in India
                         </h1>
 
                         {/* GEO Answer-First Description */}

@@ -24,13 +24,29 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Custom Web & App Development, Algo Trading Software | Uvicon Technologies",
+  title: "Premium Web, App & Trading Solutions | Uvicon",
   description:
     "Uvicon Technologies builds custom websites, mobile apps, games, and algorithmic trading software with premium design. Explore our products and services.",
+  icons: {
+    icon: "/assets/icons/uvicon-technologies-logo.webp",
+  },
+  openGraph: {
+    title: "Premium Web, App & Trading Solutions | Uvicon",
+    description: "Uvicon Technologies builds custom websites, mobile apps, games, and algorithmic trading software with premium design.",
+    url: "https://uvicon.in",
+    siteName: "Uvicon Technologies",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Premium Web, App & Trading Solutions | Uvicon",
+    description: "Uvicon Technologies builds custom websites, mobile apps, games, and algorithmic trading software with premium design.",
+  },
 };
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 export default function RootLayout({
   children,

@@ -9,32 +9,34 @@ import { Menu, X, ShoppingCart, ChevronDown, Home, Layers, CreditCard, BookOpen,
 const navLinks = [
   { name: "Home", href: "/", icon: Home },
   {
-    name: "Products", href: "/softwares",
+    name: "Services", href: "/services",
     icon: Layers,
     subItems: [
-      { name: "Software", href: "/softwares" },
-      { name: "Application", href: "/application" },
-      { name: "Websites", href: "/websites" },
-      { name: "Games", href: "/games" }
+      { name: "Custom Software", href: "/services/software" },
+      { name: "Web Development", href: "/services/web" },
+      { name: "Mobile Apps", href: "/services/mobile" },
+      { name: "Game & AI Dev", href: "/services/games-ai" }
     ]
   },
+
   { name: "Pricing", href: "/pricing", icon: CreditCard },
   {
     name: "Resources", href: "/resources",
     icon: BookOpen,
     subItems: [
-      { name: "About us", href: "/about-us" },
-      { name: "Privacy Policy", href: "/privacy-policy" },
-      { name: "Refund Policy", href: "/refund-policy" }
+      { name: "Faq's & Tutorials", href: "/faqs" },
+      { name: "Case Studies", href: "/case-studies" },
+      { name: "Blog / Insights", href: "/blog" }
     ]
   },
   {
-    name: "More", href: "/more",
-    icon: Grid,
+    name: "Company", href: "/company",
+    icon: Globe,
     subItems: [
-      { name: "Why Choose us ?", href: "/why-choose-us" },
-      { name: "Faq's & Tutorials", href: "/faqs" },
-      { name: "Our Visions & Values", href: "/visions" }
+      { name: "About Us", href: "/about-us" },
+      { name: "Why Choose Us", href: "/why-choose-us" },
+      { name: "Vision & Values", href: "/visions" },
+      { name: "Contact Us", href: "/contact" }
     ]
   },
 ];

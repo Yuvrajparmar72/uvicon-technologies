@@ -96,16 +96,16 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Column 2: Products */}
-            <nav className="flex flex-col gap-4 col-span-1 lg:col-span-2" aria-label="Footer Products Navigation">
+            {/* Column 2: Services */}
+            <nav className="flex flex-col gap-4 col-span-1 lg:col-span-2" aria-label="Footer Services Navigation">
               <h4 className="text-base font-semibold tracking-wider text-text-primary uppercase font-[family-name:var(--font-heading-section)]">
-                Products
+                Services
               </h4>
               <ul className="flex flex-col gap-3 text-sm lg:text-[15px] font-[family-name:var(--font-body)]">
-                <li><Link href="/softwares" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Software</Link></li>
-                <li><Link href="/application" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Application</Link></li>
-                <li><Link href="/websites" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Websites</Link></li>
-                <li><Link href="/games" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Games</Link></li>
+                <li><Link href="/services/software" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Software</Link></li>
+                <li><Link href="/services/web" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Web Dev</Link></li>
+                <li><Link href="/services/mobile" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Mobile Apps</Link></li>
+                <li><Link href="/services/games-ai" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Games & AI</Link></li>
               </ul>
             </nav>
 
@@ -116,21 +116,23 @@ export default function Footer() {
               </h4>
               <ul className="flex flex-col gap-3 text-sm lg:text-[15px] font-[family-name:var(--font-body)]">
                 <li><Link href="/pricing" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Pricing</Link></li>
-                <li><Link href="/about-us" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> About Us</Link></li>
+                <li><Link href="/case-studies" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Case Studies</Link></li>
+                <li><Link href="/blog" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Blog / Insights</Link></li>
                 <li><Link href="/faqs" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> FAQ & Tutorials</Link></li>
-                <li><Link href="/why-choose-us" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Why Choose Us?</Link></li>
               </ul>
             </nav>
 
-            {/* Column 4: Legal */}
-            <nav className="flex flex-col gap-4 col-span-1 lg:col-span-2" aria-label="Footer Legal Navigation">
+            {/* Column 4: Company & Legal */}
+            <nav className="flex flex-col gap-4 col-span-1 lg:col-span-2" aria-label="Footer Company & Legal Navigation">
               <h4 className="text-base font-semibold tracking-wider text-text-primary uppercase font-[family-name:var(--font-heading-section)]">
-                Legal
+                Company
               </h4>
               <ul className="flex flex-col gap-3 text-sm lg:text-[15px] font-[family-name:var(--font-body)]">
+                <li><Link href="/about-us" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> About Us</Link></li>
+                <li><Link href="/why-choose-us" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Why Choose Us</Link></li>
+                <li><Link href="/visions" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Vision & Values</Link></li>
                 <li><Link href="/privacy-policy" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Privacy Policy</Link></li>
                 <li><Link href="/refund-policy" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Refund Policy</Link></li>
-                <li><Link href="/visions" className="text-text-secondary hover:text-brand-accent transition-colors flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-accent/50"></span> Our Vision & Values</Link></li>
               </ul>
             </nav>
 

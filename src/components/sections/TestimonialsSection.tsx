@@ -69,13 +69,11 @@ function AggregateStats({ data = testimonialsData }: { data?: Testimonial[] }) {
     const avgRating = (data.reduce((sum, t) => sum + t.rating, 0) / data.length).toFixed(1);
 
     return (
-        <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-4 sm:mt-6 relative z-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#003D3F]/6 dark:bg-white/8 border border-[#003D3F]/12 dark:border-white/15 backdrop-blur-md">
-                <span className="text-2xl font-black text-[#003D3F] dark:text-[#FFC050] font-[family-name:var(--font-heading-main)]">{avgRating}</span>
-                <div className="flex flex-col">
-                    <StarRating rating={Math.round(Number(avgRating))} />
-                    <span className="text-[10px] font-semibold text-[#003D3F]/60 dark:text-white/60 mt-0.5">Average Rating</span>
-                </div>
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:py-2 rounded-2xl sm:rounded-[20px] bg-[#003D3F]/6 dark:bg-white/8 border border-[#003D3F]/12 dark:border-white/15 backdrop-blur-md shrink-0">
+            <span className="text-xl sm:text-2xl font-black text-[#003D3F] dark:text-[#FFC050] font-[family-name:var(--font-heading-main)]">{avgRating}</span>
+            <div className="flex flex-col text-left">
+                <StarRating rating={Math.round(Number(avgRating))} />
+                <span className="text-[9px] sm:text-[10px] font-semibold text-[#003D3F]/60 dark:text-white/60 mt-0.5">Average Rating</span>
             </div>
         </div>
     );
@@ -432,11 +430,11 @@ export default function TestimonialsSection() {
                 <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-start">
 
                     {/* Header */}
-                    <div className="relative text-left w-full max-w-5xl mb-8 sm:mb-12 flex flex-col items-start justify-start">
+                    <div className="relative text-right w-full max-w-5xl ml-auto mb-8 sm:mb-12 flex flex-col items-end justify-end">
 
                         {/* Watermark + H2 */}
-                        <div className="relative w-full flex justify-start items-center">
-                            <span className="absolute top-1/2 left-0 -translate-y-1/2 text-[32px] sm:text-[110px] lg:text-[160px] font-black tracking-widest uppercase pointer-events-none select-none text-transparent stroke-watermark-testimonials whitespace-nowrap font-[family-name:var(--font-heading-main)] z-0">
+                        <div className="relative w-full flex justify-end items-center">
+                            <span className="absolute top-1/2 right-0 -translate-y-1/2 text-[32px] sm:text-[110px] lg:text-[160px] font-black tracking-widest uppercase pointer-events-none select-none text-transparent stroke-watermark-testimonials whitespace-nowrap font-[family-name:var(--font-heading-main)] z-0 text-right">
                                 REVIEWS
                             </span>
 
@@ -446,20 +444,25 @@ export default function TestimonialsSection() {
                         </div>
 
                         {/* Subtitle */}
-                        <p className="text-[#003D3F]/85 dark:text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed max-w-3xl text-left font-medium font-[family-name:var(--font-body)] mt-2.5 sm:mt-4 relative z-10">
+                        <p className="text-[#003D3F]/85 dark:text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed max-w-3xl text-right font-medium font-[family-name:var(--font-body)] mt-2.5 sm:mt-4 relative z-10">
                             Real feedback from verified enterprise clients, quantitative traders, startup founders, and business leaders across India.
                         </p>
 
-                        {/* Aggregate Stats */}
-                        <AggregateStats data={testimonialsData} />
+                        {/* Stats & Category Filters - Flowing together inline */}
+                        <div className="w-full flex items-center justify-end gap-2 sm:gap-3 mt-6 sm:mt-8 relative z-10 overflow-x-auto no-scrollbar pb-2 sm:pb-0 flex-nowrap sm:flex-wrap">
+                            
+                            {/* Average Rating Block */}
+                            <AggregateStats data={testimonialsData} />
 
-                        {/* Category Filter Pills (Horizontal scroll on mobile, flex wrap on desktop) */}
-                        <div className="w-full flex items-center justify-start gap-2 sm:gap-3 mt-5 sm:mt-8 relative z-10 overflow-x-auto no-scrollbar pb-2 sm:pb-0 flex-nowrap sm:flex-wrap">
+                            {/* Divider Line on Desktop */}
+                            <div className="hidden sm:block w-[1px] h-8 bg-[#003D3F]/15 dark:bg-white/15 mx-1 shrink-0" />
+
+                            {/* Filter Pills */}
                             {categories.map((cat) => (
                                 <button
                                     key={cat}
                                     onClick={() => handleCategoryChange(cat)}
-                                    className={`shrink-0 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold transition-all focus:outline-none backdrop-blur-md ${
+                                    className={`shrink-0 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-[13px] font-bold transition-all focus:outline-none backdrop-blur-md ${
                                         activeCategory === cat
                                             ? "bg-[#00595C] text-white dark:bg-[#FFC050] dark:text-[#002829] shadow-md scale-105"
                                             : "bg-[#003D3F]/6 dark:bg-white/8 text-[#003D3F]/80 dark:text-white/80 hover:bg-[#003D3F]/12 dark:hover:bg-white/15 border border-[#003D3F]/10 dark:border-white/10"

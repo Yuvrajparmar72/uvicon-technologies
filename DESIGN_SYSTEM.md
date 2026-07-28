@@ -33,7 +33,34 @@ This codebase should only ever **link out** to those subdomains (e.g., a "Login"
 - Animation: Framer Motion (component/page transitions), GSAP (scroll-triggered sequences), native CSS transitions (hover/micro-interactions)
 - Theme: Light mode by default, with a dark mode toggle (see Section 2)
 
-**Preserve existing URLs.** The current site already has indexed pages at `/websites/`, `/softwares/`, `/applications/`, `/games/`, `/pricing/`, `/about-us/`, `/why-choose-us/`, `/faqs-tutorials/`, `/our-vision-values/`, `/privacy-policy/`, `/refund-policy/`. Keep these exact slugs in the rebuild so existing search rankings and backlinks aren't lost. Only add new slugs for genuinely new pages (e.g. a dedicated Algo product page, a `/blog/` section).
+**Preserve existing URLs.** The current site already has indexed pages. Keep these exact slugs or properly redirect them if changed. The new refined structure uses the following slugs:
+- **Services**: `/services`, `/services/software`, `/services/web`, `/services/mobile`, `/services/games-ai`
+- **Pricing**: `/pricing`
+- **Resources**: `/faqs`, `/case-studies`, `/blog`
+- **Company**: `/company`, `/about-us`, `/why-choose-us`, `/visions`, `/contact`
+- **Legal**: `/privacy-policy`, `/refund-policy` (Footer only)
+
+---
+
+## 1.5 NAVIGATION STRUCTURE
+
+The main header navigation must follow this exact structure to maintain B2B Tech Agency standards. **Do not add "Products" or "More" dropdowns.**
+1. **Home** (`/`)
+2. **Services**
+   - Custom Software (`/services/software`)
+   - Web Development (`/services/web`)
+   - Mobile Apps (`/services/mobile`)
+   - Game & AI Dev (`/services/games-ai`)
+3. **Pricing** (`/pricing`)
+4. **Resources**
+   - Faq's & Tutorials (`/faqs`)
+   - Case Studies (`/case-studies`)
+   - Blog / Insights (`/blog`)
+5. **Company**
+   - About Us (`/about-us`)
+   - Why Choose Us (`/why-choose-us`)
+   - Vision & Values (`/visions`)
+   - Contact Us (`/contact`)
 
 ---
 

@@ -108,12 +108,12 @@ export default function FaqSection() {
                     <div className="absolute top-[12%] left-[18%] w-[45%] h-[35%] rounded-full bg-gradient-to-b from-white/85 to-transparent transform -rotate-45"></div>
                 </div>
 
-                <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-end">
-                    <div className="relative text-right w-full max-w-5xl mb-6 sm:mb-8 flex flex-col items-end justify-end ml-auto">
+                <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-start">
+                    <div className="relative text-left w-full max-w-5xl mb-6 sm:mb-8 flex flex-col items-start justify-start">
                         
                         {/* Watermark + H2 */}
-                        <div className="relative w-full flex justify-end items-center">
-                            <span className="absolute top-1/2 right-0 -translate-y-1/2 text-[36px] sm:text-[90px] lg:text-[130px] font-black tracking-widest uppercase pointer-events-none select-none text-transparent stroke-watermark-faq whitespace-nowrap font-[family-name:var(--font-heading-main)] z-0">
+                        <div className="relative w-full flex justify-start items-center">
+                            <span className="absolute top-1/2 left-0 -translate-y-1/2 text-[36px] sm:text-[90px] lg:text-[130px] font-black tracking-widest uppercase pointer-events-none select-none text-transparent stroke-watermark-faq whitespace-nowrap font-[family-name:var(--font-heading-main)] z-0">
                                 FAQ
                             </span>
 
@@ -123,7 +123,7 @@ export default function FaqSection() {
                         </div>
 
                         {/* Subtitle */}
-                        <p className="text-[#003D3F]/85 dark:text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed max-w-3xl text-right font-medium font-[family-name:var(--font-body)] mt-2 sm:mt-3 relative z-10">
+                        <p className="text-[#003D3F]/85 dark:text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed max-w-3xl text-left font-medium font-[family-name:var(--font-body)] mt-2 sm:mt-3 relative z-10">
                             Clear, direct answers regarding custom web development, sub-0.1ms algo latency, 100% IP ownership, and 24/7 support.
                         </p>
                     </div>
