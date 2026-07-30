@@ -47,6 +47,7 @@ export const metadata: Metadata = {
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import PageTransitionCurtain from "@/components/layout/PageTransitionCurtain";
 
 export default function RootLayout({
   children,
@@ -59,7 +60,7 @@ export default function RootLayout({
       className={`${alegreyaSansSC.variable} ${tourney.variable} ${openSans.variable}`}
     >
       <body className="bg-background text-text-primary antialiased selection:bg-brand-accent selection:text-text-primary">
-        
+        <PageTransitionCurtain />
         <Header />
         {children}
         <Footer />
