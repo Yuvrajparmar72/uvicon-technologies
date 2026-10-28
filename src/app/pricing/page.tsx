@@ -94,6 +94,22 @@ const pricingSchema = {
                         text: "Every Full-Cycle Product Engineering delivery includes a 90-day post-launch SLA warranty covering bug fixes, browser compatibility, and performance monitoring at zero additional cost. Beyond the warranty period, we offer continuous 24/7 server health monitoring, security patch management, and dedicated SLA response times under our monthly support retainers.",
                     },
                 },
+                {
+                    "@type": "Question",
+                    name: "Can I upgrade or downgrade my plan mid-project?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Yes — our engagement model is designed for flexibility. You can scale your team, add new feature modules, or adjust sprint scope at any milestone checkpoint without penalty. Upgrades are billed proportionally from the next sprint, and scope reductions are pro-rated. Your dedicated project manager handles all transitions seamlessly.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "What payment methods do you accept?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "We accept bank wire transfers (NEFT/RTGS/IMPS), UPI payments, credit/debit card payments via Razorpay, and international wire transfers for global clients. All invoices are GST-compliant with proper tax documentation. We also support milestone-based escrow arrangements for enterprise clients upon request.",
+                    },
+                },
             ],
         },
     ],

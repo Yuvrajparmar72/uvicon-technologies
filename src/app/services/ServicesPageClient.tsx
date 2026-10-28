@@ -86,6 +86,7 @@ interface SpecializationCard {
     techStack: string[];
     complianceNote?: string;
     imagePlaceholderTitle: string;
+    image: string;
 }
 
 const specializations: SpecializationCard[] = [
@@ -108,7 +109,8 @@ const specializations: SpecializationCard[] = [
         techStack: ["Python", "C++", "Node.js", "PostgreSQL", "Redis", "WebSockets"],
         complianceNote:
             "Regulatory Notice: Our algo trading tools provide software architecture and backtesting execution only. We never claim guaranteed returns or assured profit.",
-        imagePlaceholderTitle: "Algo Trading Dashboard & Chart Engine Visual"
+        imagePlaceholderTitle: "Algo Trading Dashboard & Chart Engine Visual",
+        image: "/assets/images/services-algo-trading.png"
     },
     {
         id: "web",
@@ -127,7 +129,8 @@ const specializations: SpecializationCard[] = [
             "Automated SEO & GEO Structured Schema Markups"
         ],
         techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GraphQL"],
-        imagePlaceholderTitle: "Enterprise SaaS Web Portal & Scorecard Preview"
+        imagePlaceholderTitle: "Enterprise SaaS Web Portal & Scorecard Preview",
+        image: "/assets/images/services-web-dev.png"
     },
     {
         id: "mobile",
@@ -146,7 +149,8 @@ const specializations: SpecializationCard[] = [
             "Automated App Store & Google Play CI/CD Releases"
         ],
         techStack: ["Swift", "Kotlin", "Flutter", "React Native", "Firebase"],
-        imagePlaceholderTitle: "iOS & Android Mobile Screen Showcase"
+        imagePlaceholderTitle: "iOS & Android Mobile Screen Showcase",
+        image: "/assets/images/services-mobile-apps.png"
     },
     {
         id: "games-ai",
@@ -165,7 +169,8 @@ const specializations: SpecializationCard[] = [
             "Predictive Analytics & Autonomous Business Automation"
         ],
         techStack: ["Python", "Unity", "Unreal Engine", "PyTorch", "FastAPI"],
-        imagePlaceholderTitle: "3D Game Environment & AI Agent Workflow Visual"
+        imagePlaceholderTitle: "3D Game Environment & AI Agent Workflow Visual",
+        image: "/assets/images/Ai-Agents.avif"
     }
 ];
 
@@ -821,35 +826,21 @@ export default function ServicesPageClient() {
                                             </div>
                                         </div>
 
-                                        {/* DEDICATED VISUAL CONTAINER / EMPTY IMAGE PLACEHOLDER FOR USER */}
-                                        <div className="w-full flex-1 min-h-[140px] sm:min-h-[180px] lg:min-h-[190px] rounded-2xl border-2 border-dashed border-[#003D3F]/25 dark:border-white/25 bg-[#003D3F]/4 dark:bg-white/[0.03] hover:bg-[#003D3F]/8 dark:hover:bg-white/[0.06] transition-all flex flex-col items-center justify-center p-5 text-center relative overflow-hidden group/box">
-                                            {/* Decorative Background Grid Pattern */}
-                                            <div
-                                                className="absolute inset-0 opacity-[0.07] dark:opacity-[0.12] pointer-events-none"
-                                                style={{
-                                                    backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
-                                                    backgroundSize: `20px 20px`
-                                                }}
+                                        {/* DEDICATED VISUAL CONTAINER / IMAGE SHOWCASE */}
+                                        <div className="w-full flex-1 min-h-[160px] sm:min-h-[200px] lg:min-h-[220px] rounded-2xl border border-[#003D3F]/15 dark:border-white/20 bg-[#003D3F]/4 dark:bg-white/[0.03] transition-all flex flex-col items-center justify-center relative overflow-hidden group/box shadow-md">
+                                            <Image
+                                                src={spec.image}
+                                                alt={spec.title}
+                                                fill
+                                                className="object-cover object-center group-hover/box:scale-105 transition-transform duration-700 rounded-2xl"
+                                                sizes="(max-width: 1024px) 100vw, 40vw"
                                             />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 pointer-events-none" />
 
-                                            {/* Empty Image Container Badge */}
-                                            <div className="w-12 h-12 rounded-2xl bg-[#FFC050]/20 border border-[#FFC050]/40 flex items-center justify-center text-[#FFC050] mb-3 group-hover/box:scale-110 transition-transform shadow-md">
-                                                <ImageIcon className="w-6 h-6" />
-                                            </div>
-
-                                            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#00595C] dark:text-[#FFC050] mb-1">
-                                                Visual Container Placeholder
-                                            </span>
-                                            <h4 className="text-sm sm:text-base font-bold text-[#003D3F] dark:text-white font-[family-name:var(--font-heading-section)] max-w-sm">
-                                                {spec.imagePlaceholderTitle}
-                                            </h4>
-                                            <p className="text-xs sm:text-sm text-[#003D3F]/70 dark:text-white/70 max-w-xs mt-1 leading-relaxed">
-                                                Drop your live product screenshot, architecture diagram, or UI preview mockup here.
-                                            </p>
-
-                                            {/* Corner Decorative Dimensions Badge */}
-                                            <div className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded bg-[#003D3F]/10 dark:bg-white/10 text-[9px] font-mono font-bold text-[#003D3F]/70 dark:text-white/70">
-                                                16:9 Aspect Ratio
+                                            {/* Corner Badge */}
+                                            <div className="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-mono font-bold text-white z-10 flex items-center gap-1.5">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                                <span>Production Build</span>
                                             </div>
                                         </div>
 

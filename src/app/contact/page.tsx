@@ -1,16 +1,68 @@
 import React from "react";
 import { Metadata } from "next";
+import ContactClient from "./ContactClient";
 
 export const metadata: Metadata = {
-    title: "Contact Us | Uvicon",
-    description: "Get in touch with Uvicon Technologies to start your next big project.",
+    title: "Contact Us | Uvicon Technologies — Direct Tech Lead Consultation",
+    description:
+        "Connect directly with Uvicon's Lead Software Architects and quant engineers. Schedule a free technical consultation, lock in sprint scope, or request a mutual NDA.",
+    openGraph: {
+        title: "Contact Us | Uvicon Technologies",
+        description:
+            "Direct access to Lead Architects and dedicated engineering squads. Guaranteed sub-15min response time.",
+        url: "https://uvicon.in/contact",
+        siteName: "Uvicon Technologies",
+        images: [
+            {
+                url: "/assets/images/uvicon-pro-preview.png",
+                width: 1200,
+                height: 630,
+                alt: "Uvicon Technologies Contact & Consultation Desk",
+            },
+        ],
+        locale: "en_US",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Contact Us | Uvicon Technologies",
+        description:
+            "Schedule your technical consultation directly with our Lead Architects.",
+        images: ["/assets/images/uvicon-pro-preview.png"],
+    },
+    alternates: {
+        canonical: "https://uvicon.in/contact",
+    },
+};
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Uvicon Technologies",
+    "url": "https://uvicon.in/contact",
+    "description":
+        "Direct communication channels and project inquiry form for Uvicon Technologies engineering studio.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Uvicon Technologies",
+        "url": "https://uvicon.in",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Technical Sales & Architectural Inquiries",
+            "email": "contact@uvicon.in",
+            "availableLanguage": ["English", "Hindi"]
+        }
+    }
 };
 
 export default function ContactPage() {
     return (
-        <main className="w-full min-h-screen bg-[#F8FAFC] dark:bg-[#001719] text-[#003D3F] dark:text-white pt-28 pb-20 px-5 flex flex-col items-center justify-center text-center">
-            <h1 className="text-4xl md:text-6xl font-bold font-[family-name:var(--font-heading-main)] mb-6">Contact Us</h1>
-            <p className="text-lg opacity-80 max-w-2xl">This page is under construction. We look forward to hearing from you soon.</p>
-        </main>
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <ContactClient />
+        </>
     );
 }

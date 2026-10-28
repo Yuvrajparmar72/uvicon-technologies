@@ -26,8 +26,8 @@ const projects: Project[] = [
         filterTag: "crm",
         title: "Uvicon Connect — Intelligent Lead & Sales CRM",
         description: "An all-in-one Customer Relationship Management platform built for automated lead distribution, sales pipeline tracking, real-time client analytics, and team productivity.",
-        icon: "https://pthobbphhnbsqsfslhrm.supabase.co/storage/v1/object/public/marketplace/icons/1780722206492-r38scv0.png",
-        image: "/assets/images/uvicon-connect-preview.png",
+        icon: "/assets/logo/icon.png",
+        image: "/assets/images/uvicon-connect-screenshot.avif",
         badge: "Featured CRM Tool",
         metrics: ["10k+ Leads Managed", "Real-Time Kanban Pipelines", "99.9% Cloud Uptime"],
         techStack: ["React", "Node.js", "PostgreSQL", "WebSockets"],
@@ -39,25 +39,25 @@ const projects: Project[] = [
         filterTag: "algo",
         title: "Uvicon Pro — Algo Software & Strategy Tester",
         description: "Institutional-grade algorithmic trading software and backtesting engine for quantitative traders, featuring automated multi-broker execution and low-latency risk management.",
-        icon: "https://pthobbphhnbsqsfslhrm.supabase.co/storage/v1/object/public/marketplace/icons/1780660337964-et9ae1w.png",
-        image: "/assets/images/uvicon-pro-preview.png",
+        icon: "/assets/logo/uvicontechnologies.png",
+        image: "/assets/images/uvicon-pro-desktop-screenshot.avif",
         badge: "Algo & Backtesting",
         metrics: ["< 0.1ms Execution Latency", "Multi-Broker Integration", "Backtest Strategy Engine"],
         techStack: ["Python", "React", "C++", "Redis", "WebSockets"],
         link: "/softwares"
     },
     {
-        id: "uhmb-services",
-        category: "Healthcare & Web Platform",
-        filterTag: "healthcare",
-        title: "UHMB Services — Digital Healthcare & Patient Portal",
-        description: "A modern healthcare services platform offering online doctor appointments, electronic health records (EHR) management, and virtual telemedicine consultations.",
-        icon: "/assets/icons/uhmb-logo.png",
-        image: "/assets/images/uhmb-services-preview.png",
-        badge: "Healthcare Platform",
-        metrics: ["HIPAA Compliant Security", "Instant Doctor Booking", "24/7 Patient Care Portal"],
-        techStack: ["Next.js", "Tailwind CSS", "Node.js", "Cloudflare"],
-        link: "/websites"
+        id: "uvicon-hms",
+        category: "Hospitality & Enterprise SaaS",
+        filterTag: "hotel",
+        title: "Uvicon HMS — All-in-One Hotel Management System",
+        description: "A comprehensive hotel management platform designed to automate staff management, room allocation, guest check-ins, billing, inventory tracking, and real-time income analytics.",
+        icon: "/assets/logo/recondo_logo_white.png",
+        image: "/assets/images/uvicon-hotel-management-software-screenshot.avif",
+        badge: "Hotel SaaS Platform",
+        metrics: ["Staff & Shift Manager", "Real-Time Room Booking", "Income & Revenue Analytics"],
+        techStack: ["React", "Node.js", "PostgreSQL", "Tailwind CSS"],
+        link: "/softwares"
     }
 ];
 
@@ -180,7 +180,7 @@ export default function FeaturedProjectsSection() {
                             { label: "All Projects", filter: "all" },
                             { label: "CRM & SaaS", filter: "crm" },
                             { label: "Algo Trading", filter: "algo" },
-                            { label: "Healthcare Web", filter: "healthcare" }
+                            { label: "Hotel Management", filter: "hotel" }
                         ].map((btn) => (
                             <button
                                 key={btn.filter}
