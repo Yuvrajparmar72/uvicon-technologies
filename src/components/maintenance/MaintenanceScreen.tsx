@@ -308,11 +308,11 @@ export default function MaintenanceScreen() {
             </a>
             <span className="text-[#1D3634]">•</span>
             <a
-              href="tel:+919876543210"
+              href="tel:+918889007424"
               className="inline-flex items-center gap-1.5 text-white hover:text-[#FFC050] transition-colors"
             >
               <Phone className="w-3.5 h-3.5 text-[#2BA8A0]" />
-              +91 98765 43210
+              +91 88890 07424
             </a>
           </div>
         </div>

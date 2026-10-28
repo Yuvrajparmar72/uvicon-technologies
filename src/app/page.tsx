@@ -110,6 +110,7 @@ export default function Page() {
                         "contactPoint": {
                             "@type": "ContactPoint",
                             "email": "contact@uvicon.in",
+                            "telephone": "+91-8889007424",
                             "contactType": "customer service"
                         },
                         "sameAs": []

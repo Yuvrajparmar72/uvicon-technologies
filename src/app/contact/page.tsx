@@ -50,6 +50,7 @@ const jsonLd = {
             "@type": "ContactPoint",
             "contactType": "Technical Sales & Architectural Inquiries",
             "email": "contact@uvicon.in",
+            "telephone": "+91-8889007424",
             "availableLanguage": ["English", "Hindi"]
         }
     }

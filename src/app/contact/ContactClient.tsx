@@ -302,6 +302,24 @@ export default function ContactClient() {
                                     </div>
                                 </a>
 
+                                {/* Phone Hotline */}
+                                <a
+                                    href="tel:+918889007424"
+                                    className="p-3.5 rounded-2xl bg-white/70 dark:bg-white/5 border border-[#003D3F]/10 dark:border-white/10 hover:border-[#FFC050] transition-all flex items-center gap-3.5 group"
+                                >
+                                    <div className="w-10 h-10 rounded-xl bg-[#00595C]/10 dark:bg-[#FFC050]/15 flex items-center justify-center text-[#00595C] dark:text-[#FFC050] group-hover:scale-110 transition-transform shrink-0">
+                                        <Phone className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <span className="text-[11px] font-bold text-[#003D3F]/60 dark:text-white/60 block">
+                                            Direct Phone / WhatsApp Hotline
+                                        </span>
+                                        <span className="font-bold text-[#003D3F] dark:text-white group-hover:text-[#00595C] dark:group-hover:text-[#FFC050]">
+                                            +91 88890 07424
+                                        </span>
+                                    </div>
+                                </a>
+
                                 {/* Instant Tech Desk */}
                                 <div className="p-3.5 rounded-2xl bg-white/70 dark:bg-white/5 border border-[#003D3F]/10 dark:border-white/10 flex items-center gap-3.5">
                                     <div className="w-10 h-10 rounded-xl bg-[#00595C]/10 dark:bg-[#FFC050]/15 flex items-center justify-center text-[#00595C] dark:text-[#FFC050] shrink-0">
