@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { supabase } from "@/lib/supabase";
 import {
     Sparkles,
     ShieldCheck,
@@ -175,6 +176,8 @@ export default function BlogClient() {
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [newsletterEmail, setNewsletterEmail] = useState("");
     const [isSubscribed, setIsSubscribed] = useState(false);
+    const [subscribing, setSubscribing] = useState(false);
+    const [subscribeError, setSubscribeError] = useState<string | null>(null);
 
     const categories = ["All", "Algo & Quant", "Web & SaaS", "Security & IP", "AI & Agents", "DevOps & Cloud"];
 
@@ -191,9 +194,35 @@ export default function BlogClient() {
 
     const featuredPost = blogPosts.find((p) => p.featured) || blogPosts[0];
 
-    const handleSubscribe = (e: React.FormEvent) => {
+    const handleSubscribe = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubscribed(true);
+        if (!newsletterEmail.trim() || subscribing) return;
+        setSubscribing(true);
+        setSubscribeError(null);
+
+        try {
+            const { error } = await supabase.from("newsletter_subscribers").insert([
+                {
+                    email: newsletterEmail.trim().toLowerCase(),
+                    source: "blog_weekly_dispatch"
+                }
+            ]);
+
+            if (error) {
+                // If duplicate email, still show success message gracefully
+                if (error.code === "23505") {
+                    setIsSubscribed(true);
+                } else {
+                    setSubscribeError(error.message || "Failed to subscribe. Please try again.");
+                }
+            } else {
+                setIsSubscribed(true);
+            }
+        } catch {
+            setSubscribeError("Network error. Please try again.");
+        } finally {
+            setSubscribing(false);
+        }
     };
 
     return (
@@ -555,22 +584,30 @@ export default function BlogClient() {
                                     <span>You&apos;re on the list! Welcome to the Uvicon Architecture Dispatch.</span>
                                 </div>
                             ) : (
-                                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-                                    <input
-                                        type="email"
-                                        required
-                                        value={newsletterEmail}
-                                        onChange={(e) => setNewsletterEmail(e.target.value)}
-                                        placeholder="Enter your work email..."
-                                        className="px-4 py-3 rounded-full bg-white/90 dark:bg-white/10 border border-[#003D3F]/20 dark:border-white/20 text-xs sm:text-sm text-[#003D3F] dark:text-white placeholder-[#003D3F]/40 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#FFC050] grow"
-                                    />
-                                    <button
-                                        type="submit"
-                                        className="px-6 py-3 rounded-full bg-gradient-to-r from-[#FFC050] to-[#E6A639] text-[#002829] font-bold text-xs sm:text-sm tracking-wide shadow-md hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
-                                    >
-                                        <span>Subscribe</span>
-                                        <ArrowUpRight className="w-4 h-4" />
-                                    </button>
+                                <form onSubmit={handleSubscribe} className="flex flex-col gap-2 max-w-md mx-auto">
+                                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                                        <input
+                                            type="email"
+                                            required
+                                            value={newsletterEmail}
+                                            onChange={(e) => setNewsletterEmail(e.target.value)}
+                                            placeholder="Enter your work email..."
+                                            className="px-4 py-3 rounded-full bg-white/90 dark:bg-white/10 border border-[#003D3F]/20 dark:border-white/20 text-xs sm:text-sm text-[#003D3F] dark:text-white placeholder-[#003D3F]/40 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#FFC050] grow"
+                                        />
+                                        <button
+                                            type="submit"
+                                            disabled={subscribing}
+                                            className="px-6 py-3 rounded-full bg-gradient-to-r from-[#FFC050] to-[#E6A639] text-[#002829] font-bold text-xs sm:text-sm tracking-wide shadow-md hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0 disabled:opacity-60 disabled:cursor-not-allowed"
+                                        >
+                                            <span>{subscribing ? "Subscribing..." : "Subscribe"}</span>
+                                            <ArrowUpRight className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                    {subscribeError && (
+                                        <span className="text-xs text-red-500 dark:text-red-400 font-medium text-center">
+                                            {subscribeError}
+                                        </span>
+                                    )}
                                 </form>
                             )}
                         </div>

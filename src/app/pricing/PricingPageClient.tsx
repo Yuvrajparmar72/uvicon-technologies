@@ -37,6 +37,9 @@ interface CategoryTier {
     features: string[];
     ctaText: string;
     ctaHref: string;
+    tagline?: string;
+    originalPrice?: string;
+    discount?: string;
 }
 
 interface CategoryInfo {
@@ -52,9 +55,41 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "Our software development team specializes in building scalable, maintainable applications using cutting-edge technologies like Next.js, Node.js, Go, and Python. We follow strict CI/CD practices, automated testing, and zero-downtime deployment strategies. Every project comes with 100% IP ownership, comprehensive documentation, and post-launch support to ensure your product thrives in production.",
         highlights: ["Agile Sprints", "100% IP Ownership", "CI/CD Pipelines", "Post-Launch Support"],
         tiers: [
-            { name: "Starter", price: "₹99,000", period: "per project", badge: "Basic", features: ["Single Module Development", "Basic UI/UX Design", "API Integration", "Cloud Deployment", "Source Code Ownership", "1 Week Post-Launch Support"], ctaText: "Get Started", ctaHref: "/contact?category=software&tier=starter" },
-            { name: "Growth", price: "₹2,49,000", period: "per month", popular: true, badge: "Most Popular", features: ["Full-Stack Development Squad", "Advanced UI/UX & Prototyping", "Custom Backend Architecture", "Automated Testing & QA", "CI/CD Pipeline Setup", "Dedicated Tech Lead", "4 Weeks Post-Launch Support"], ctaText: "Scale Up", ctaHref: "/contact?category=software&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["Enterprise System Architecture", "Microservices & Event-Driven Design", "Zero Trust Security", "Legacy Migration", "24/7 Monitoring & Ops", "Dedicated Solutions Architect", "SLA Guarantees"], ctaText: "Contact Team", ctaHref: "/contact?category=software&tier=enterprise" }
+            {
+                name: "Starter",
+                tagline: "Essential MVP & Custom Tool",
+                price: "₹24,999",
+                period: "per project",
+                originalPrice: "₹39,999",
+                discount: "SAVE 38%",
+                badge: "Basic",
+                features: ["Single Module Development", "Basic UI/UX Design", "API Integration", "Cloud Deployment", "Source Code Ownership", "1 Week Post-Launch Support"],
+                ctaText: "Get Started",
+                ctaHref: "/contact?category=software&tier=starter"
+            },
+            {
+                name: "Growth",
+                tagline: "Full-Stack Custom System",
+                price: "₹59,999",
+                period: "per project",
+                originalPrice: "₹89,999",
+                discount: "SAVE 33%",
+                popular: true,
+                badge: "Most Popular",
+                features: ["Full-Stack Development Squad", "Advanced UI/UX & Prototyping", "Custom Backend Architecture", "Automated Testing & QA", "CI/CD Pipeline Setup", "Dedicated Tech Lead", "4 Weeks Post-Launch Support"],
+                ctaText: "Scale Up",
+                ctaHref: "/contact?category=software&tier=growth"
+            },
+            {
+                name: "Enterprise",
+                tagline: "Large-Scale Architecture",
+                price: "Custom",
+                period: "tailored scope",
+                badge: "Enterprise",
+                features: ["Enterprise System Architecture", "Microservices & Event-Driven Design", "Zero Trust Security", "Legacy Migration", "24/7 Monitoring & Ops", "Dedicated Solutions Architect", "SLA Guarantees"],
+                ctaText: "Contact Team",
+                ctaHref: "/contact?category=software&tier=enterprise"
+            }
         ]
     },
     "APPLICATION DEVELOPMENT": {
@@ -62,9 +97,41 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "From React Native to Flutter and native Swift/Kotlin, we craft mobile experiences that are fast, intuitive, and scalable. Our mobile team handles everything from initial concept and UI/UX design to App Store optimization and post-launch analytics. We integrate push notifications, offline-first architecture, real-time sync, and biometric authentication for enterprise-grade mobile solutions.",
         highlights: ["Cross-Platform", "App Store Optimization", "Push Notifications", "Offline-First"],
         tiers: [
-            { name: "Starter", price: "₹1,29,000", period: "per app", badge: "Basic", features: ["Single Platform (iOS or Android)", "Up to 8 Screens", "Basic UI Components", "API Integration", "App Store Submission", "1 Week Support"], ctaText: "Get Started", ctaHref: "/contact?category=app&tier=starter" },
-            { name: "Growth", price: "₹2,99,000", period: "per month", popular: true, badge: "Most Popular", features: ["Cross-Platform (iOS + Android)", "Unlimited Screens", "Custom Animations & UI", "Push Notifications", "Offline Mode & Sync", "Analytics Dashboard", "4 Weeks Support"], ctaText: "Build Now", ctaHref: "/contact?category=app&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["Enterprise Mobile Suite", "Biometric Authentication", "MDM Integration", "Custom SDK Development", "White-Label Solutions", "24/7 Support & SLA", "Dedicated Mobile Team"], ctaText: "Contact Team", ctaHref: "/contact?category=app&tier=enterprise" }
+            {
+                name: "Starter",
+                tagline: "Fast Launch Mobile MVP",
+                price: "₹29,999",
+                period: "per app",
+                originalPrice: "₹49,999",
+                discount: "SAVE 40%",
+                badge: "Basic",
+                features: ["Single Platform (iOS or Android)", "Up to 8 Screens", "Basic UI Components", "API Integration", "App Store Submission", "1 Week Support"],
+                ctaText: "Get Started",
+                ctaHref: "/contact?category=app&tier=starter"
+            },
+            {
+                name: "Growth",
+                tagline: "Complete Dual-Platform App",
+                price: "₹69,999",
+                period: "per project",
+                originalPrice: "₹99,999",
+                discount: "SAVE 30%",
+                popular: true,
+                badge: "Most Popular",
+                features: ["Cross-Platform (iOS + Android)", "Unlimited Screens", "Custom Animations & UI", "Push Notifications", "Offline Mode & Sync", "Analytics Dashboard", "4 Weeks Support"],
+                ctaText: "Build Now",
+                ctaHref: "/contact?category=app&tier=growth"
+            },
+            {
+                name: "Enterprise",
+                tagline: "Enterprise Mobile Ecosystem",
+                price: "Custom",
+                period: "tailored scope",
+                badge: "Enterprise",
+                features: ["Enterprise Mobile Suite", "Biometric Authentication", "MDM Integration", "Custom SDK Development", "White-Label Solutions", "24/7 Support & SLA", "Dedicated Mobile Team"],
+                ctaText: "Contact Team",
+                ctaHref: "/contact?category=app&tier=enterprise"
+            }
         ]
     },
     "WEBSITE DEVELOPMENT": {
@@ -72,9 +139,41 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "We build blazing-fast websites using Next.js, React, and modern CSS frameworks with server-side rendering for maximum SEO performance. Our websites score 95+ on Core Web Vitals, include responsive design for all devices, and come with integrated analytics, CMS, and conversion optimization. From landing pages to complex web portals, we deliver pixel-perfect experiences.",
         highlights: ["95+ Lighthouse Score", "SEO Optimized", "Responsive Design", "CMS Integration"],
         tiers: [
-            { name: "Starter", price: "₹49,000", period: "per site", badge: "Basic", features: ["Up to 5 Pages", "Responsive Design", "Basic SEO Setup", "Contact Form", "SSL Certificate", "1 Month Hosting"], ctaText: "Get Started", ctaHref: "/contact?category=web&tier=starter" },
-            { name: "Growth", price: "₹1,49,000", period: "per project", popular: true, badge: "Most Popular", features: ["Up to 15 Pages", "Custom UI/UX Design", "Advanced SEO & Analytics", "CMS Integration", "Blog & Dynamic Content", "Performance Optimization", "3 Months Support"], ctaText: "Build Now", ctaHref: "/contact?category=web&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["Unlimited Pages", "Custom Web Application", "E-commerce Integration", "Multi-language Support", "Advanced Security", "CDN & Caching", "Dedicated Web Team"], ctaText: "Contact Team", ctaHref: "/contact?category=web&tier=enterprise" }
+            {
+                name: "Starter",
+                tagline: "Essential Business Web Presence",
+                price: "₹9,999",
+                period: "per site",
+                originalPrice: "₹15,999",
+                discount: "SAVE 38%",
+                badge: "Basic",
+                features: ["Up to 5 Pages", "Responsive Design", "Basic SEO Setup", "Contact Form", "SSL Certificate", "1 Month Hosting"],
+                ctaText: "Get Started",
+                ctaHref: "/contact?category=web&tier=starter"
+            },
+            {
+                name: "Growth",
+                tagline: "High-Growth Dynamic Portal",
+                price: "₹24,999",
+                period: "per project",
+                originalPrice: "₹39,999",
+                discount: "SAVE 38%",
+                popular: true,
+                badge: "Most Popular",
+                features: ["Up to 15 Pages", "Custom UI/UX Design", "Advanced SEO & Analytics", "CMS Integration", "Blog & Dynamic Content", "Performance Optimization", "3 Months Support"],
+                ctaText: "Build Now",
+                ctaHref: "/contact?category=web&tier=growth"
+            },
+            {
+                name: "Enterprise",
+                tagline: "Custom Web Application",
+                price: "Custom",
+                period: "tailored scope",
+                badge: "Enterprise",
+                features: ["Unlimited Pages", "Custom Web Application", "E-commerce Integration", "Multi-language Support", "Advanced Security", "CDN & Caching", "Dedicated Web Team"],
+                ctaText: "Contact Team",
+                ctaHref: "/contact?category=web&tier=enterprise"
+            }
         ]
     },
     "ALGO SOFTWARE": {
@@ -82,9 +181,67 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "Our algo trading solutions are engineered for sub-millisecond execution with direct exchange connectivity, real-time market data processing, and advanced risk management systems. We build custom strategy engines, backtesting frameworks, and portfolio management tools that handle thousands of orders per second while maintaining strict compliance and audit trails.",
         highlights: ["Ultra-Low Latency", "Backtesting Engine", "Risk Management", "Exchange Connectivity"],
         tiers: [
-            { name: "Starter", price: "₹1,99,000", period: "per setup", badge: "Basic", features: ["Single Strategy Engine", "Basic Backtesting", "Paper Trading Mode", "Market Data Feed", "Basic Risk Controls", "Email Alerts"], ctaText: "Get Started", ctaHref: "/contact?category=algo&tier=starter" },
-            { name: "Growth", price: "₹4,49,000", period: "per month", popular: true, badge: "Most Popular", features: ["Multi-Strategy Engine", "Advanced Backtesting & Optimization", "Live Trading with Risk Management", "Real-Time P&L Dashboard", "Custom Indicators", "API Access", "Priority Support"], ctaText: "Start Trading", ctaHref: "/contact?category=algo&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["Co-located Infrastructure", "Direct Exchange Access", "Custom Matching Engine", "Advanced Risk & Compliance", "Multi-Asset Support", "24/7 Monitoring", "Dedicated Quant Team"], ctaText: "Contact Team", ctaHref: "/contact?category=algo&tier=enterprise" }
+            {
+                name: "Basic",
+                tagline: "Start your algo journey",
+                price: "₹11,999",
+                period: "/ 30 Days",
+                originalPrice: "₹14,999",
+                discount: "SAVE 20%",
+                badge: "Basic",
+                features: [
+                    "Paper + Algo Trading",
+                    "Live Market Signals",
+                    "Advanced Analytics",
+                    "Single Broker Integration",
+                    "3-5 Strategy & 1 Indicators Slots",
+                    "Email Support"
+                ],
+                ctaText: "Subscribe",
+                ctaHref: "/contact?category=algo&tier=basic"
+            },
+            {
+                name: "Standard",
+                tagline: "For serious traders",
+                price: "₹29,999",
+                period: "/ 90 Days",
+                originalPrice: "₹44,999",
+                discount: "SAVE 33%",
+                popular: true,
+                badge: "Most Popular",
+                features: [
+                    "Paper + Algo Trading",
+                    "Live Market Signals",
+                    "Advanced Analytics",
+                    "Multi-Broker Support",
+                    "5-7 Strategy & 2 Indicator Slots",
+                    "Priority Support"
+                ],
+                ctaText: "Subscribe",
+                ctaHref: "/contact?category=algo&tier=standard"
+            },
+            {
+                name: "Premium",
+                tagline: "Enterprise-grade experience",
+                price: "₹89,999",
+                period: "/ 365 Days",
+                originalPrice: "₹1,44,999",
+                discount: "SAVE 38%",
+                badge: "Enterprise",
+                features: [
+                    "Everything in Pro",
+                    "Custom Strategy Development",
+                    "White-label Dashboard",
+                    "Upto 16 Strategies & 8 Indicators",
+                    "API Rate Limit Priority",
+                    "Quarterly Strategy Review",
+                    "1-on-1 Q & A Session",
+                    "Lifetime Community Access",
+                    "Beta Testing Access"
+                ],
+                ctaText: "Subscribe",
+                ctaHref: "/contact?category=algo&tier=premium"
+            }
         ]
     },
     "SCALPING SOFTWARE": {
@@ -92,9 +249,41 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "Our scalping software delivers microsecond-level execution with advanced order routing, smart position sizing, and automated profit booking. Built with real-time tick data processing, customizable scalping strategies, and integrated risk controls that protect your capital. Supports multiple brokers and exchanges with one-click trading and hotkey execution.",
         highlights: ["Microsecond Execution", "Auto Profit Booking", "Multi-Broker Support", "Hotkey Trading"],
         tiers: [
-            { name: "Starter", price: "₹79,000", period: "per license", badge: "Basic", features: ["Single Broker Integration", "Basic Scalping Strategies", "Manual + Auto Mode", "Real-Time Charts", "Basic P&L Tracking", "Email Support"], ctaText: "Get Started", ctaHref: "/contact?category=scalping&tier=starter" },
-            { name: "Growth", price: "₹1,99,000", period: "per month", popular: true, badge: "Most Popular", features: ["Multi-Broker Support", "Advanced Strategy Builder", "Smart Position Sizing", "Hotkey Execution", "Real-Time Risk Monitor", "Custom Indicators", "Priority Support"], ctaText: "Start Scalping", ctaHref: "/contact?category=scalping&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["Institutional-Grade Infrastructure", "Co-location Support", "Custom Strategy Engine", "Multi-Exchange Routing", "Compliance & Audit Tools", "24/7 Support & SLA", "Dedicated Trading Tech Team"], ctaText: "Contact Team", ctaHref: "/contact?category=scalping&tier=enterprise" }
+            {
+                name: "Starter",
+                tagline: "Fast Precision Execution",
+                price: "₹14,999",
+                period: "per license",
+                originalPrice: "₹24,999",
+                discount: "SAVE 40%",
+                badge: "Basic",
+                features: ["Single Broker Integration", "Basic Scalping Strategies", "Manual + Auto Mode", "Real-Time Charts", "Basic P&L Tracking", "Email Support"],
+                ctaText: "Get Started",
+                ctaHref: "/contact?category=scalping&tier=starter"
+            },
+            {
+                name: "Growth",
+                tagline: "Multi-Broker Scalping Desk",
+                price: "₹34,999",
+                period: "per license",
+                originalPrice: "₹49,999",
+                discount: "SAVE 30%",
+                popular: true,
+                badge: "Most Popular",
+                features: ["Multi-Broker Support", "Advanced Strategy Builder", "Smart Position Sizing", "Hotkey Execution", "Real-Time Risk Monitor", "Custom Indicators", "Priority Support"],
+                ctaText: "Start Scalping",
+                ctaHref: "/contact?category=scalping&tier=growth"
+            },
+            {
+                name: "Enterprise",
+                tagline: "Institutional-Grade Desk",
+                price: "Custom",
+                period: "tailored scope",
+                badge: "Enterprise",
+                features: ["Institutional-Grade Infrastructure", "Co-location Support", "Custom Strategy Engine", "Multi-Exchange Routing", "Compliance & Audit Tools", "24/7 Support & SLA", "Dedicated Trading Tech Team"],
+                ctaText: "Contact Team",
+                ctaHref: "/contact?category=scalping&tier=enterprise"
+            }
         ]
     },
     "GAMES": {
@@ -102,9 +291,41 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "We create engaging gaming experiences using Unity, Unreal Engine, and custom WebGL frameworks. Our game development covers concept art, 3D modeling, physics engines, multiplayer networking, monetization systems, and cross-platform deployment. We specialize in both hyper-casual mobile games and complex multiplayer experiences with real-time leaderboards and social features.",
         highlights: ["Unity & Unreal", "Multiplayer Networking", "Cross-Platform", "Monetization Systems"],
         tiers: [
-            { name: "Starter", price: "₹1,49,000", period: "per game", badge: "Basic", features: ["2D Mobile Game", "Up to 10 Levels", "Basic UI & Animations", "Ad Integration", "Play Store Submission", "1 Month Support"], ctaText: "Get Started", ctaHref: "/contact?category=games&tier=starter" },
-            { name: "Growth", price: "₹3,99,000", period: "per project", popular: true, badge: "Most Popular", features: ["3D Game Development", "Multiplayer Support", "In-App Purchases", "Leaderboards & Achievements", "Custom Physics Engine", "Cross-Platform Deploy", "3 Months Support"], ctaText: "Build Game", ctaHref: "/contact?category=games&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["AAA-Quality Development", "MMO Infrastructure", "Custom Game Engine", "VR/AR Integration", "Anti-Cheat Systems", "Live Ops & Analytics", "Dedicated Game Studio"], ctaText: "Contact Team", ctaHref: "/contact?category=games&tier=enterprise" }
+            {
+                name: "Starter",
+                tagline: "2D Casual Mobile Game",
+                price: "₹29,999",
+                period: "per game",
+                originalPrice: "₹49,999",
+                discount: "SAVE 40%",
+                badge: "Basic",
+                features: ["2D Mobile Game", "Up to 10 Levels", "Basic UI & Animations", "Ad Integration", "Play Store Submission", "1 Month Support"],
+                ctaText: "Get Started",
+                ctaHref: "/contact?category=games&tier=starter"
+            },
+            {
+                name: "Growth",
+                tagline: "3D Multiplayer Experience",
+                price: "₹79,999",
+                period: "per project",
+                originalPrice: "₹1,19,999",
+                discount: "SAVE 33%",
+                popular: true,
+                badge: "Most Popular",
+                features: ["3D Game Development", "Multiplayer Support", "In-App Purchases", "Leaderboards & Achievements", "Custom Physics Engine", "Cross-Platform Deploy", "3 Months Support"],
+                ctaText: "Build Game",
+                ctaHref: "/contact?category=games&tier=growth"
+            },
+            {
+                name: "Enterprise",
+                tagline: "Full Studio Production",
+                price: "Custom",
+                period: "tailored scope",
+                badge: "Enterprise",
+                features: ["AAA-Quality Development", "MMO Infrastructure", "Custom Game Engine", "VR/AR Integration", "Anti-Cheat Systems", "Live Ops & Analytics", "Dedicated Game Studio"],
+                ctaText: "Contact Team",
+                ctaHref: "/contact?category=games&tier=enterprise"
+            }
         ]
     },
     "CRM SOFTWARE": {
@@ -112,9 +333,41 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "Our CRM platforms are built to match your exact business workflow — from lead capture and scoring to deal management, email automation, and revenue forecasting. We integrate with your existing tools (WhatsApp, email, telephony) and provide real-time dashboards, custom reports, and AI-powered lead scoring to maximize your sales team's productivity and close rates.",
         highlights: ["Sales Automation", "WhatsApp Integration", "AI Lead Scoring", "Custom Dashboards"],
         tiers: [
-            { name: "Starter", price: "₹89,000", period: "per setup", badge: "Basic", features: ["Contact Management", "Basic Pipeline View", "Email Integration", "Task Management", "Basic Reports", "Up to 5 Users"], ctaText: "Get Started", ctaHref: "/contact?category=crm&tier=starter" },
-            { name: "Growth", price: "₹2,29,000", period: "per month", popular: true, badge: "Most Popular", features: ["Advanced Pipeline Management", "Email & WhatsApp Automation", "AI Lead Scoring", "Custom Dashboards & Reports", "Third-Party Integrations", "Up to 25 Users", "Priority Support"], ctaText: "Automate Sales", ctaHref: "/contact?category=crm&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["Unlimited Users", "Custom Workflows & Automations", "Telephony Integration", "Revenue Forecasting", "Multi-Branch Support", "API Access & Webhooks", "Dedicated Account Manager"], ctaText: "Contact Team", ctaHref: "/contact?category=crm&tier=enterprise" }
+            {
+                name: "Starter",
+                tagline: "Lead & Contact Management",
+                price: "₹14,999",
+                period: "per setup",
+                originalPrice: "₹24,999",
+                discount: "SAVE 40%",
+                badge: "Basic",
+                features: ["Contact Management", "Basic Pipeline View", "Email Integration", "Task Management", "Basic Reports", "Up to 5 Users"],
+                ctaText: "Get Started",
+                ctaHref: "/contact?category=crm&tier=starter"
+            },
+            {
+                name: "Growth",
+                tagline: "Automated Sales Pipeline",
+                price: "₹39,999",
+                period: "per setup",
+                originalPrice: "₹59,999",
+                discount: "SAVE 33%",
+                popular: true,
+                badge: "Most Popular",
+                features: ["Advanced Pipeline Management", "Email & WhatsApp Automation", "AI Lead Scoring", "Custom Dashboards & Reports", "Third-Party Integrations", "Up to 25 Users", "Priority Support"],
+                ctaText: "Automate Sales",
+                ctaHref: "/contact?category=crm&tier=growth"
+            },
+            {
+                name: "Enterprise",
+                tagline: "Omnichannel Enterprise CRM",
+                price: "Custom",
+                period: "tailored scope",
+                badge: "Enterprise",
+                features: ["Unlimited Users", "Custom Workflows & Automations", "Telephony Integration", "Revenue Forecasting", "Multi-Branch Support", "API Access & Webhooks", "Dedicated Account Manager"],
+                ctaText: "Contact Team",
+                ctaHref: "/contact?category=crm&tier=enterprise"
+            }
         ]
     },
     "AI AGENTS": {
@@ -122,9 +375,41 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "We design and deploy intelligent AI agents using GPT, Gemini, Claude, and custom fine-tuned models. Our agents can autonomously handle customer inquiries, process documents, analyze data, generate reports, and orchestrate complex multi-step workflows. We build RAG pipelines, tool-calling agents, and multi-agent systems that integrate seamlessly with your existing business infrastructure.",
         highlights: ["Multi-Agent Systems", "RAG Pipelines", "Tool Calling", "Custom Fine-Tuning"],
         tiers: [
-            { name: "Starter", price: "₹1,49,000", period: "per agent", badge: "Basic", features: ["Single AI Agent", "Basic Knowledge Base", "Chat Interface", "Email Integration", "Usage Analytics", "Monthly Token Limit"], ctaText: "Get Started", ctaHref: "/contact?category=ai&tier=starter" },
-            { name: "Growth", price: "₹3,49,000", period: "per month", popular: true, badge: "Most Popular", features: ["Multi-Agent Orchestration", "RAG with Custom Data", "Tool Calling & API Access", "Voice & Chat Support", "Advanced Analytics", "Custom Fine-Tuning", "Priority Support"], ctaText: "Deploy Agents", ctaHref: "/contact?category=ai&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["Enterprise AI Platform", "On-Premise Deployment", "Custom LLM Training", "Multi-Agent Workflows", "Compliance & Data Privacy", "Unlimited Usage", "Dedicated AI Team"], ctaText: "Contact Team", ctaHref: "/contact?category=ai&tier=enterprise" }
+            {
+                name: "Starter",
+                tagline: "Smart Assistant Agent",
+                price: "₹19,999",
+                period: "per agent",
+                originalPrice: "₹29,999",
+                discount: "SAVE 33%",
+                badge: "Basic",
+                features: ["Single AI Agent", "Basic Knowledge Base", "Chat Interface", "Email Integration", "Usage Analytics", "Monthly Token Limit"],
+                ctaText: "Get Started",
+                ctaHref: "/contact?category=ai&tier=starter"
+            },
+            {
+                name: "Growth",
+                tagline: "Multi-Agent RAG System",
+                price: "₹49,999",
+                period: "per project",
+                originalPrice: "₹74,999",
+                discount: "SAVE 33%",
+                popular: true,
+                badge: "Most Popular",
+                features: ["Multi-Agent Orchestration", "RAG with Custom Data", "Tool Calling & API Access", "Voice & Chat Support", "Advanced Analytics", "Custom Fine-Tuning", "Priority Support"],
+                ctaText: "Deploy Agents",
+                ctaHref: "/contact?category=ai&tier=growth"
+            },
+            {
+                name: "Enterprise",
+                tagline: "Enterprise LLM Solutions",
+                price: "Custom",
+                period: "tailored scope",
+                badge: "Enterprise",
+                features: ["Enterprise AI Platform", "On-Premise Deployment", "Custom LLM Training", "Multi-Agent Workflows", "Compliance & Data Privacy", "Unlimited Usage", "Dedicated AI Team"],
+                ctaText: "Contact Team",
+                ctaHref: "/contact?category=ai&tier=enterprise"
+            }
         ]
     },
     "EMPLOYEE MANAGEMENT": {
@@ -132,9 +417,41 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "Our employee management platforms cover the entire HR lifecycle — from recruitment and onboarding to attendance, leave management, payroll processing, performance reviews, and offboarding. We build custom portals with biometric integration, geo-fenced attendance, automated payroll calculations with tax compliance, and comprehensive analytics dashboards for data-driven HR decisions.",
         highlights: ["Payroll Automation", "Biometric Integration", "Leave Management", "Performance Reviews"],
         tiers: [
-            { name: "Starter", price: "₹69,000", period: "per setup", badge: "Basic", features: ["Employee Directory", "Basic Attendance", "Leave Management", "Document Storage", "Basic Reports", "Up to 50 Employees"], ctaText: "Get Started", ctaHref: "/contact?category=hrms&tier=starter" },
-            { name: "Growth", price: "₹1,79,000", period: "per month", popular: true, badge: "Most Popular", features: ["Biometric Attendance", "Payroll with Tax Compliance", "Performance Management", "Recruitment Module", "Custom Workflows", "Up to 500 Employees", "Priority Support"], ctaText: "Automate HR", ctaHref: "/contact?category=hrms&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["Unlimited Employees", "Multi-Branch Management", "Custom Integrations", "Advanced Analytics", "Compliance Automation", "API Access", "Dedicated HR Tech Team"], ctaText: "Contact Team", ctaHref: "/contact?category=hrms&tier=enterprise" }
+            {
+                name: "Starter",
+                tagline: "Essential Team HRMS",
+                price: "₹12,999",
+                period: "per setup",
+                originalPrice: "₹19,999",
+                discount: "SAVE 35%",
+                badge: "Basic",
+                features: ["Employee Directory", "Basic Attendance", "Leave Management", "Document Storage", "Basic Reports", "Up to 50 Employees"],
+                ctaText: "Get Started",
+                ctaHref: "/contact?category=hrms&tier=starter"
+            },
+            {
+                name: "Growth",
+                tagline: "Full Payroll & Biometric HR",
+                price: "₹34,999",
+                period: "per setup",
+                originalPrice: "₹49,999",
+                discount: "SAVE 30%",
+                popular: true,
+                badge: "Most Popular",
+                features: ["Biometric Attendance", "Payroll with Tax Compliance", "Performance Management", "Recruitment Module", "Custom Workflows", "Up to 500 Employees", "Priority Support"],
+                ctaText: "Automate HR",
+                ctaHref: "/contact?category=hrms&tier=growth"
+            },
+            {
+                name: "Enterprise",
+                tagline: "Multi-Branch HR Ecosystem",
+                price: "Custom",
+                period: "tailored scope",
+                badge: "Enterprise",
+                features: ["Unlimited Employees", "Multi-Branch Management", "Custom Integrations", "Advanced Analytics", "Compliance Automation", "API Access", "Dedicated HR Tech Team"],
+                ctaText: "Contact Team",
+                ctaHref: "/contact?category=hrms&tier=enterprise"
+            }
         ]
     },
     "SALES MANAGEMENT SOFTWARES": {
@@ -142,9 +459,41 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "Our sales management solutions go beyond basic CRM — we build complete sales ecosystems with territory management, quota tracking, commission calculations, sales forecasting, and competitive intelligence. Integrated with email, WhatsApp, telephony, and social media for omnichannel outreach. Real-time dashboards give managers complete visibility into team performance and pipeline health.",
         highlights: ["Revenue Forecasting", "Commission Tracking", "Omnichannel Outreach", "Territory Management"],
         tiers: [
-            { name: "Starter", price: "₹79,000", period: "per setup", badge: "Basic", features: ["Lead Management", "Basic Pipeline Tracking", "Email Templates", "Activity Logging", "Basic Dashboards", "Up to 10 Users"], ctaText: "Get Started", ctaHref: "/contact?category=sales&tier=starter" },
-            { name: "Growth", price: "₹2,19,000", period: "per month", popular: true, badge: "Most Popular", features: ["Advanced Pipeline & Forecasting", "Omnichannel Communication", "Commission Calculator", "Territory Management", "Custom Reports & KPIs", "Up to 50 Users", "Priority Support"], ctaText: "Boost Sales", ctaHref: "/contact?category=sales&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["Unlimited Users", "AI Sales Intelligence", "Custom Integrations", "Revenue Operations Suite", "Multi-Region Support", "API & Webhooks", "Dedicated Sales Tech Team"], ctaText: "Contact Team", ctaHref: "/contact?category=sales&tier=enterprise" }
+            {
+                name: "Starter",
+                tagline: "Pipeline & Deal Tracking",
+                price: "₹14,999",
+                period: "per setup",
+                originalPrice: "₹22,999",
+                discount: "SAVE 35%",
+                badge: "Basic",
+                features: ["Lead Management", "Basic Pipeline Tracking", "Email Templates", "Activity Logging", "Basic Dashboards", "Up to 10 Users"],
+                ctaText: "Get Started",
+                ctaHref: "/contact?category=sales&tier=starter"
+            },
+            {
+                name: "Growth",
+                tagline: "Advanced Sales Forecasting",
+                price: "₹39,999",
+                period: "per setup",
+                originalPrice: "₹59,999",
+                discount: "SAVE 33%",
+                popular: true,
+                badge: "Most Popular",
+                features: ["Advanced Pipeline & Forecasting", "Omnichannel Communication", "Commission Calculator", "Territory Management", "Custom Reports & KPIs", "Up to 50 Users", "Priority Support"],
+                ctaText: "Boost Sales",
+                ctaHref: "/contact?category=sales&tier=growth"
+            },
+            {
+                name: "Enterprise",
+                tagline: "Enterprise Revenue Ops",
+                price: "Custom",
+                period: "tailored scope",
+                badge: "Enterprise",
+                features: ["Unlimited Users", "AI Sales Intelligence", "Custom Integrations", "Revenue Operations Suite", "Multi-Region Support", "API & Webhooks", "Dedicated Sales Tech Team"],
+                ctaText: "Contact Team",
+                ctaHref: "/contact?category=sales&tier=enterprise"
+            }
         ]
     },
     "HOTEL MANAGEMENT SOFTWARES": {
@@ -152,9 +501,41 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "Our hospitality solutions cover front desk operations, reservation management, channel manager integration (OTAs), housekeeping coordination, restaurant POS, inventory management, and guest engagement platforms. We build unified dashboards that give hoteliers real-time visibility into occupancy, revenue, and guest satisfaction across all properties.",
         highlights: ["Booking Engine", "Channel Manager", "POS Integration", "Guest Experience"],
         tiers: [
-            { name: "Starter", price: "₹99,000", period: "per property", badge: "Basic", features: ["Room Management", "Basic Booking System", "Guest Check-in/out", "Invoice Generation", "Basic Reports", "Single Property"], ctaText: "Get Started", ctaHref: "/contact?category=hotel&tier=starter" },
-            { name: "Growth", price: "₹2,49,000", period: "per month", popular: true, badge: "Most Popular", features: ["Multi-Channel Booking", "OTA Integration", "Restaurant POS", "Housekeeping Module", "Revenue Management", "Guest App", "Priority Support"], ctaText: "Upgrade Hotel", ctaHref: "/contact?category=hotel&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["Multi-Property Management", "Central Reservation System", "Custom Channel Manager", "Advanced Revenue Optimization", "Loyalty Program", "API Integrations", "Dedicated Hospitality Team"], ctaText: "Contact Team", ctaHref: "/contact?category=hotel&tier=enterprise" }
+            {
+                name: "Starter",
+                tagline: "Front Desk & Room Booking",
+                price: "₹16,999",
+                period: "per property",
+                originalPrice: "₹24,999",
+                discount: "SAVE 32%",
+                badge: "Basic",
+                features: ["Room Management", "Basic Booking System", "Guest Check-in/out", "Invoice Generation", "Basic Reports", "Single Property"],
+                ctaText: "Get Started",
+                ctaHref: "/contact?category=hotel&tier=starter"
+            },
+            {
+                name: "Growth",
+                tagline: "OTA, POS & Guest Engine",
+                price: "₹44,999",
+                period: "per property",
+                originalPrice: "₹64,999",
+                discount: "SAVE 31%",
+                popular: true,
+                badge: "Most Popular",
+                features: ["Multi-Channel Booking", "OTA Integration", "Restaurant POS", "Housekeeping Module", "Revenue Management", "Guest App", "Priority Support"],
+                ctaText: "Upgrade Hotel",
+                ctaHref: "/contact?category=hotel&tier=growth"
+            },
+            {
+                name: "Enterprise",
+                tagline: "Multi-Property Chain Suite",
+                price: "Custom",
+                period: "tailored scope",
+                badge: "Enterprise",
+                features: ["Multi-Property Management", "Central Reservation System", "Custom Channel Manager", "Advanced Revenue Optimization", "Loyalty Program", "API Integrations", "Dedicated Hospitality Team"],
+                ctaText: "Contact Team",
+                ctaHref: "/contact?category=hotel&tier=enterprise"
+            }
         ]
     },
     "SEO MANAGEMENT SOFTWARES": {
@@ -162,9 +543,41 @@ const categoryData: Record<string, CategoryInfo> = {
         fullDesc: "Our SEO platforms provide comprehensive search engine optimization tools — from technical SEO auditing and keyword research to backlink monitoring, content optimization, and rank tracking. We build custom dashboards with automated reporting, Google Search Console integration, competitor analysis, and AI-powered content suggestions that help businesses consistently improve their organic search visibility.",
         highlights: ["Rank Tracking", "Competitor Analysis", "Automated Reports", "Content Optimization"],
         tiers: [
-            { name: "Starter", price: "₹49,000", period: "per setup", badge: "Basic", features: ["Keyword Tracking (100 keywords)", "Basic Site Audit", "Google Analytics Setup", "Monthly Reports", "On-Page SEO Guide", "Email Support"], ctaText: "Get Started", ctaHref: "/contact?category=seo&tier=starter" },
-            { name: "Growth", price: "₹1,29,000", period: "per month", popular: true, badge: "Most Popular", features: ["Unlimited Keyword Tracking", "Advanced Technical Audit", "Competitor Monitoring", "Backlink Analysis", "Content Optimization AI", "Custom Dashboards", "Priority Support"], ctaText: "Rank Higher", ctaHref: "/contact?category=seo&tier=growth" },
-            { name: "Enterprise", price: "Custom", period: "tailored scope", badge: "Enterprise", features: ["Multi-Domain Management", "White-Label Reports", "API Access", "Custom Integrations", "Dedicated SEO Strategist", "24/7 Monitoring", "Enterprise SLA"], ctaText: "Contact Team", ctaHref: "/contact?category=seo&tier=enterprise" }
+            {
+                name: "Starter",
+                tagline: "Rank Tracking & Audits",
+                price: "₹7,999",
+                period: "per setup",
+                originalPrice: "₹12,999",
+                discount: "SAVE 38%",
+                badge: "Basic",
+                features: ["Keyword Tracking (100 keywords)", "Basic Site Audit", "Google Analytics Setup", "Monthly Reports", "On-Page SEO Guide", "Email Support"],
+                ctaText: "Get Started",
+                ctaHref: "/contact?category=seo&tier=starter"
+            },
+            {
+                name: "Growth",
+                tagline: "Full Technical SEO Suite",
+                price: "₹19,999",
+                period: "per project",
+                originalPrice: "₹29,999",
+                discount: "SAVE 33%",
+                popular: true,
+                badge: "Most Popular",
+                features: ["Unlimited Keyword Tracking", "Advanced Technical Audit", "Competitor Monitoring", "Backlink Analysis", "Content Optimization AI", "Custom Dashboards", "Priority Support"],
+                ctaText: "Rank Higher",
+                ctaHref: "/contact?category=seo&tier=growth"
+            },
+            {
+                name: "Enterprise",
+                tagline: "Agency White-Label Suite",
+                price: "Custom",
+                period: "tailored scope",
+                badge: "Enterprise",
+                features: ["Multi-Domain Management", "White-Label Reports", "API Access", "Custom Integrations", "Dedicated SEO Strategist", "24/7 Monitoring", "Enterprise SLA"],
+                ctaText: "Contact Team",
+                ctaHref: "/contact?category=seo&tier=enterprise"
+            }
         ]
     }
 };
@@ -1121,18 +1534,44 @@ export default function PricingPageClient() {
                                             {tier.name}
                                         </h3>
 
+                                        {tier.tagline && (
+                                            <p className={`text-xs sm:text-sm font-medium -mt-0.5 mb-1 ${
+                                                tier.popular ? "text-white/80" : "text-[#003D3F]/70 dark:text-white/60"
+                                            }`}>
+                                                {tier.tagline}
+                                            </p>
+                                        )}
+
                                         {/* Price */}
-                                        <div className="my-4 pb-4 border-b border-[#003D3F]/10 dark:border-white/10 flex items-baseline gap-1.5">
-                                            <span className={`text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight font-[family-name:var(--font-heading-main)] ${
-                                                tier.popular ? "text-white" : "text-[#003D3F] dark:text-white"
-                                            }`}>
-                                                {tier.price}
-                                            </span>
-                                            <span className={`text-xs sm:text-sm font-semibold ${
-                                                tier.popular ? "text-[#3FC1B8]" : "text-[#003D3F]/60 dark:text-white/45"
-                                            }`}>
-                                                {tier.period}
-                                            </span>
+                                        <div className="my-4 pb-4 border-b border-[#003D3F]/10 dark:border-white/10">
+                                            <div className="flex items-baseline gap-1.5">
+                                                <span className={`text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight font-[family-name:var(--font-heading-main)] ${
+                                                    tier.popular ? "text-white" : "text-[#003D3F] dark:text-white"
+                                                }`}>
+                                                    {tier.price}
+                                                </span>
+                                                <span className={`text-xs sm:text-sm font-semibold ${
+                                                    tier.popular ? "text-[#3FC1B8]" : "text-[#003D3F]/60 dark:text-white/45"
+                                                }`}>
+                                                    {tier.period}
+                                                </span>
+                                            </div>
+                                            {(tier.originalPrice || tier.discount) && (
+                                                <div className="flex items-center gap-2 mt-2">
+                                                    {tier.originalPrice && (
+                                                        <span className={`text-xs sm:text-sm line-through font-semibold ${
+                                                            tier.popular ? "text-white/50" : "text-[#003D3F]/40 dark:text-white/40"
+                                                        }`}>
+                                                            {tier.originalPrice}
+                                                        </span>
+                                                    )}
+                                                    {tier.discount && (
+                                                        <span className="px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+                                                            {tier.discount}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            )}
                                         </div>
 
                                         {/* Features */}

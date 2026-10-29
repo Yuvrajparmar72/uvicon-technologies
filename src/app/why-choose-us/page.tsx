@@ -37,9 +37,18 @@ const whyChooseUsSchema = {
             logo: "https://uvicon.in/assets/icons/uvicon-technologies-logo.webp",
             description:
                 "Uvicon Technologies is a premier Indian technology studio delivering bespoke custom software, high-speed Next.js web applications, iOS/Android mobile apps, and quant trading software architecture with zero compromise.",
+            address: {
+                "@type": "PostalAddress",
+                streetAddress: "Behind Climax Academy, Panna Naka",
+                addressLocality: "Chhatarpur",
+                addressRegion: "Madhya Pradesh",
+                postalCode: "471001",
+                addressCountry: "IN",
+            },
             contactPoint: {
                 "@type": "ContactPoint",
-                email: "contact@uvicon.in",
+                telephone: "+91-8889007424",
+                email: "uvicontechnologies@gmail.com",
                 contactType: "customer support",
                 areaServed: "IN",
                 availableLanguage: ["English", "Hindi"]

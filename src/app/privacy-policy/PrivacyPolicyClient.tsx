@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck, Mail, MapPin } from "lucide-react";
+import { ShieldCheck, Mail, MapPin, Phone } from "lucide-react";
 
 export default function PrivacyPolicyClient() {
     return (
@@ -136,12 +136,20 @@ export default function PrivacyPolicyClient() {
                             <p className="mb-4">If you have any questions about this Privacy Policy, please contact us at:</p>
                             <div className="flex flex-col gap-3 font-medium">
                                 <div className="flex items-center gap-3">
-                                    <Mail className="w-5 h-5 text-[#FFC050]" />
-                                    <a href="mailto:contact@uvicon.in" className="hover:text-[#00595C] dark:hover:text-[#3FC1B8] transition-colors">contact@uvicon.in</a>
+                                    <Phone className="w-5 h-5 text-[#FFC050] shrink-0" />
+                                    <a href="tel:+918889007424" className="hover:text-[#00595C] dark:hover:text-[#3FC1B8] transition-colors">+91 8889007424</a>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <MapPin className="w-5 h-5 text-[#FFC050]" />
-                                    <span>123 Tech Park, Innovation Drive, Cyber City, IN 400001</span>
+                                    <Mail className="w-5 h-5 text-[#FFC050] shrink-0" />
+                                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                                        <a href="mailto:uvicontechnologies@gmail.com" className="hover:text-[#00595C] dark:hover:text-[#3FC1B8] transition-colors">uvicontechnologies@gmail.com</a>
+                                        <span className="hidden sm:inline text-text-secondary/50">•</span>
+                                        <a href="mailto:contact@uvicon.in" className="hover:text-[#00595C] dark:hover:text-[#3FC1B8] transition-colors text-xs text-text-secondary/70">contact@uvicon.in</a>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <MapPin className="w-5 h-5 text-[#FFC050] shrink-0 mt-0.5" />
+                                    <span>Behind Climax Academy, Panna Naka, Chhatarpur, M.P. 471001</span>
                                 </div>
                             </div>
                         </div>

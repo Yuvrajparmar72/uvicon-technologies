@@ -157,7 +157,7 @@ const portfolioProjects: PortfolioProject[] = [
         metrics: ["Sub-1s Token Gen", "Custom RAG Pipeline", "GPT-4 / Claude"],
         tech: ["Python", "LangChain", "Pinecone", "Next.js"],
         badge: "AI Agent",
-        imageSrc: "/assets/images/uvicon-connect-preview.png" // Reusing as placeholder
+        imageSrc: "/assets/images/Ai-Agents.avif"
     },
     {
         id: "multiplayer-rpg",
@@ -167,7 +167,7 @@ const portfolioProjects: PortfolioProject[] = [
         metrics: ["60 Tick Rate Server", "100k Concurrent", "Unreal Engine 5"],
         tech: ["C++", "Unreal Engine", "AWS GameLift", "Redis"],
         badge: "Multiplayer",
-        imageSrc: "/assets/images/Software-tools.avif" // Reusing as placeholder
+        imageSrc: "/assets/images/Game-Development.avif"
     },
     {
         id: "vision-pro-training",
@@ -177,7 +177,7 @@ const portfolioProjects: PortfolioProject[] = [
         metrics: ["Millimeter Precision", "90 FPS Native", "Spatial Audio"],
         tech: ["Unity", "C#", "ARKit", "VisionOS"],
         badge: "AR / VR",
-        imageSrc: "/assets/images/uhmb-services-preview.png" // Reusing as placeholder
+        imageSrc: "/assets/images/surgical-training-simulator.jpg"
     }
 ];
 

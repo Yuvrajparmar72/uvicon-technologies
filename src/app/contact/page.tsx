@@ -46,11 +46,19 @@ const jsonLd = {
         "@type": "Organization",
         "name": "Uvicon Technologies",
         "url": "https://uvicon.in",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Behind Climax Academy, Panna Naka",
+            "addressLocality": "Chhatarpur",
+            "addressRegion": "Madhya Pradesh",
+            "postalCode": "471001",
+            "addressCountry": "IN"
+        },
         "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "Technical Sales & Architectural Inquiries",
-            "email": "contact@uvicon.in",
             "telephone": "+91-8889007424",
+            "email": "uvicontechnologies@gmail.com",
             "availableLanguage": ["English", "Hindi"]
         }
     }

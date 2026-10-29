@@ -159,7 +159,7 @@ const portfolioProjects: PortfolioProject[] = [
         metrics: ["Offline Sync", "Biometric Auth", "Sub-100ms API Calls"],
         tech: ["React Native", "TypeScript", "Node.js", "Redis"],
         badge: "Enterprise App",
-        imageSrc: "/assets/images/uvicon-connect-preview.png"
+        imageSrc: "/assets/images/uvicon-connect-mobile.jpg"
     },
     {
         id: "uhmb-services-mobile",
@@ -169,7 +169,7 @@ const portfolioProjects: PortfolioProject[] = [
         metrics: ["HIPAA Compliant", "WebRTC Video", "Push Notifications"],
         tech: ["Swift", "Kotlin", "Firebase", "WebRTC"],
         badge: "Healthcare App",
-        imageSrc: "/assets/images/uhmb-services-preview.png"
+        imageSrc: "/assets/images/uhmb-telehealth-mobile.jpg"
     },
     {
         id: "uvicon-pro-mobile",
@@ -179,7 +179,7 @@ const portfolioProjects: PortfolioProject[] = [
         metrics: ["Zero-Delay Sockets", "Direct Broker APIs", "FaceID Execution"],
         tech: ["React Native", "Python API", "WebSockets"],
         badge: "Fintech App",
-        imageSrc: "/assets/images/uvicon-pro-preview.png"
+        imageSrc: "/assets/images/FinTech-Apps.avif"
     }
 ];
 

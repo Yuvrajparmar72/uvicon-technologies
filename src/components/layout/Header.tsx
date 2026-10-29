@@ -238,18 +238,28 @@ export default function Header() {
                 <a href="https://marketplace.uvicon.in" target="_blank" rel="noopener noreferrer" className="h-[38px] w-[38px] flex items-center justify-center rounded-xl bg-white/10 dark:bg-white/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/20 border-t-white/40 hover:bg-white/20 transition-all shadow-sm">
                   <ShoppingCart className="w-5 h-5 text-text-primary" />
                 </a>
-                <Link href="/login" className="h-[38px] px-5 rounded-xl font-semibold text-text-primary bg-white/10 dark:bg-white/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/20 border-t-white/40 hover:bg-white/20 transition-all tracking-wide flex items-center justify-center shadow-sm">
+                <a
+                  href="https://auth.uvicon.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-[38px] px-5 rounded-xl font-semibold text-text-primary bg-white/10 dark:bg-white/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/20 border-t-white/40 hover:bg-white/20 transition-all tracking-wide flex items-center justify-center shadow-sm"
+                >
                   Login
-                </Link>
+                </a>
               </div>
             </div>
 
             {/* Mobile & Tablet Right Side (Login + Hamburger) */}
             <div className="lg:hidden flex items-center justify-end flex-1 gap-3 font-[family-name:var(--font-body)]">
-              <Link href="/login" className="h-[38px] px-4 rounded-xl font-semibold text-text-primary bg-text-primary/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/20 border-t-white/40 hover:bg-text-primary/10 transition-all tracking-wide flex items-center justify-center gap-2 shadow-sm">
+              <a
+                href="https://auth.uvicon.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-[38px] px-4 rounded-xl font-semibold text-text-primary bg-text-primary/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/20 border-t-white/40 hover:bg-text-primary/10 transition-all tracking-wide flex items-center justify-center gap-2 shadow-sm"
+              >
                 <LogIn className="w-4 h-4" />
                 <span>Login</span>
-              </Link>
+              </a>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="h-[38px] w-[38px] flex items-center justify-center text-text-primary hover:text-brand-accent focus:outline-none bg-text-primary/5 backdrop-blur-[16px] backdrop-saturate-[180%] border border-white/20 border-t-white/40 rounded-xl transition-all shadow-sm"

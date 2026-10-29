@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "@/lib/supabase";
 import {
     Globe, Smartphone, Monitor, Cloud,
     Briefcase, ShoppingCart, Code, Target,
@@ -473,6 +474,20 @@ export default function CostCalculatorModal({ isOpen, onClose }: CostCalculatorM
                     href={`/contact?estimate=${encodeURIComponent(
                         `${formatCurrency(estimate.minEstimate)} - ${formatCurrency(estimate.maxEstimate)}`
                     )}&type=${state.projectType || ""}&phase=${state.phase || ""}`}
+                    onClick={() => {
+                        supabase.from("quote_estimates").insert([
+                            {
+                                project_type: state.projectType,
+                                phase: state.phase,
+                                platform: state.platform,
+                                design_level: state.designLevel,
+                                features: state.features,
+                                min_estimate: estimate.minEstimate,
+                                max_estimate: estimate.maxEstimate,
+                                status: "draft"
+                            }
+                        ]).then(() => {});
+                    }}
                     className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#3FC1B8] to-[#00E5D4] text-[#002829] font-black text-sm sm:text-base shadow-[0_8px_30px_rgba(63,193,184,0.3)] hover:shadow-[0_12px_40px_rgba(63,193,184,0.4)] transition-all hover:-translate-y-0.5"
                 >
                     Start Your Project

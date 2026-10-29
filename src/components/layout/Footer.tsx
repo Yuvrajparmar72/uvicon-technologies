@@ -1,13 +1,45 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, CheckCircle2 } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 export default function Footer() {
   const pathname = usePathname();
+  const [contactInput, setContactInput] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleCallbackSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!contactInput.trim()) return;
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const { error } = await supabase.from("callback_requests").insert([
+        {
+          contact_info: contactInput.trim(),
+          source_url: pathname || "/"
+        }
+      ]);
+
+      if (error) {
+        setErrorMessage(error.message || "Failed to request call. Please try again.");
+      } else {
+        setIsSubmitted(true);
+        setContactInput("");
+      }
+    } catch {
+      setErrorMessage("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   // Hide footer on authentication pages
   if (pathname === '/login' || pathname === '/signup') {
@@ -36,15 +68,34 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full lg:w-auto shrink-0 relative z-10">
-            <input 
-              type="text" 
-              placeholder="Enter Email or Phone No." 
-              className="w-full sm:w-72 md:w-[340px] px-5 py-4 rounded-xl bg-white text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC050] text-[15px] shadow-inner"
-            />
-            <button className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#002829] hover:bg-black text-white font-bold tracking-wider transition-colors shadow-lg shrink-0 text-[14px] uppercase border border-white/10">
-              Request Call
-            </button>
+          <div className="flex flex-col items-center lg:items-end w-full lg:w-auto shrink-0 relative z-10">
+            {isSubmitted ? (
+              <div className="flex items-center gap-2.5 px-6 py-4 rounded-xl bg-[#002829] border border-[#FFC050]/40 text-[#FFC050] text-sm font-bold shadow-lg">
+                <CheckCircle2 className="w-5 h-5 text-[#FFC050] shrink-0" />
+                <span>Request Received! We&apos;ll call you shortly.</span>
+              </div>
+            ) : (
+              <form onSubmit={handleCallbackSubmit} className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full lg:w-auto">
+                <input 
+                  type="text" 
+                  required
+                  value={contactInput}
+                  onChange={(e) => setContactInput(e.target.value)}
+                  placeholder="Enter Email or Phone No." 
+                  className="w-full sm:w-72 md:w-[340px] px-5 py-4 rounded-xl bg-white text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC050] text-[15px] shadow-inner"
+                />
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#002829] hover:bg-black text-white font-bold tracking-wider transition-colors shadow-lg shrink-0 text-[14px] uppercase border border-white/10 disabled:opacity-60 cursor-pointer"
+                >
+                  {isSubmitting ? "Sending..." : "Request Call"}
+                </button>
+              </form>
+            )}
+            {errorMessage && (
+              <span className="text-xs text-red-200 mt-2 font-medium">{errorMessage}</span>
+            )}
           </div>
 
         </div>
@@ -90,7 +141,7 @@ export default function Footer() {
                 <a href="#" className="w-10 h-10 rounded-xl bg-text-primary/5 border border-border/50 flex items-center justify-center text-text-secondary hover:text-brand-accent hover:bg-text-primary/10 transition-all shadow-sm">
                   <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-xl bg-text-primary/5 border border-border/50 flex items-center justify-center text-text-secondary hover:text-brand-accent hover:bg-text-primary/10 transition-all shadow-sm">
+                <a href="mailto:uvicontechnologies@gmail.com" aria-label="Email Uvicon Technologies" className="w-10 h-10 rounded-xl bg-text-primary/5 border border-border/50 flex items-center justify-center text-text-secondary hover:text-brand-accent hover:bg-text-primary/10 transition-all shadow-sm">
                   <Mail className="w-5 h-5" />
                 </a>
               </div>
@@ -144,15 +195,18 @@ export default function Footer() {
               <ul className="flex flex-col gap-3.5 text-sm lg:text-[15px] font-[family-name:var(--font-body)] text-text-secondary">
                 <li className="flex items-start gap-3 group">
                   <MapPin className="w-5 h-5 text-brand-accent shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                  <span className="leading-relaxed">123 Tech Park, Innovation Drive, Cyber City, IN 400001</span>
+                  <span className="leading-snug">Behind Climax Academy, Panna Naka, Chhatarpur, M.P. 471001</span>
                 </li>
                 <li className="flex items-center gap-3 group">
                   <Phone className="w-5 h-5 text-brand-accent shrink-0 group-hover:scale-110 transition-transform" />
-                  <a href="tel:+918889007424" className="hover:text-brand-accent transition-colors">+91 88890 07424</a>
+                  <a href="tel:+918889007424" className="hover:text-brand-accent transition-colors font-medium">+91 8889007424</a>
                 </li>
-                <li className="flex items-center gap-3 group">
-                  <Mail className="w-5 h-5 text-brand-accent shrink-0 group-hover:scale-110 transition-transform" />
-                  <a href="mailto:contact@uvicon.in" className="hover:text-brand-accent transition-colors">contact@uvicon.in</a>
+                <li className="flex items-start gap-3 group">
+                  <Mail className="w-5 h-5 text-brand-accent shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                  <div className="flex flex-col gap-0.5 min-w-0">
+                    <a href="mailto:uvicontechnologies@gmail.com" className="hover:text-brand-accent transition-colors font-medium break-all text-[13px] sm:text-sm">uvicontechnologies@gmail.com</a>
+                    <a href="mailto:contact@uvicon.in" className="hover:text-brand-accent transition-colors text-xs text-text-secondary/70">contact@uvicon.in</a>
+                  </div>
                 </li>
               </ul>
             </address>

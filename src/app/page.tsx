@@ -107,10 +107,18 @@ export default function Page() {
                         "url": "https://uvicon.in",
                         "logo": "https://uvicon.in/assets/icons/uvicon-logo.webp",
                         "description": "Uvicon Technologies builds custom websites, mobile apps, games, and algorithmic trading software with premium design for businesses across India.",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Behind Climax Academy, Panna Naka",
+                            "addressLocality": "Chhatarpur",
+                            "addressRegion": "Madhya Pradesh",
+                            "postalCode": "471001",
+                            "addressCountry": "IN"
+                        },
                         "contactPoint": {
                             "@type": "ContactPoint",
-                            "email": "contact@uvicon.in",
                             "telephone": "+91-8889007424",
+                            "email": "uvicontechnologies@gmail.com",
                             "contactType": "customer service"
                         },
                         "sameAs": []
@@ -188,7 +196,7 @@ export default function Page() {
                             </Link>
 
                             <a
-                                href="mailto:contact@uvicon.in"
+                                href="mailto:uvicontechnologies@gmail.com"
                                 className="w-full lg:w-auto justify-center px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-full bg-[#003D3F]/4 hover:bg-[#003D3F]/10 dark:bg-white/4 dark:hover:bg-white/10 backdrop-blur-md border-2 border-[#003D3F]/20 dark:border-white/20 hover:border-[#003D3F]/40 dark:hover:border-white/40 text-[#003D3F] dark:text-white font-semibold text-[13px] sm:text-base tracking-wide transition-all hover:scale-105 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#FFC050] focus:ring-offset-2"
                             >
                                 <Mail className="w-4 h-4 shrink-0" />

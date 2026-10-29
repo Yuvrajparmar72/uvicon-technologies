@@ -359,7 +359,7 @@ const portfolioProjects: PortfolioProject[] = [
         metrics: ["< 0.1ms Execution", "Multi-Broker API", "Strategy Backtester"],
         tech: ["Python", "C++", "React", "Redis", "WebSockets"],
         badge: "Algo Engine",
-        imageSrc: "/assets/images/uvicon-pro-preview.png"
+        imageSrc: "/assets/images/uvicon-pro-desktop-screenshot.avif"
     },
     {
         id: "uvicon-connect",
@@ -369,17 +369,17 @@ const portfolioProjects: PortfolioProject[] = [
         metrics: ["10,000+ Active Leads", "< 50ms Real-Time Sync", "99.99% Cloud Uptime"],
         tech: ["Next.js", "Node.js", "PostgreSQL", "WebSockets"],
         badge: "Enterprise CRM",
-        imageSrc: "/assets/images/uvicon-connect-preview.png"
+        imageSrc: "/assets/images/uvicon-connect-screenshot.avif"
     },
     {
-        id: "enterprise-tools",
-        title: "Custom Enterprise Automation Suite",
-        category: "Distributed Architecture",
-        description: "A containerized microservices suite with automated CI/CD pipelines, role-based access control, real-time monitoring dashboards, and zero-downtime deployment orchestration for enterprise operations.",
-        metrics: ["Docker & AWS", "99.99% SLA", "Zero-Downtime Deploys"],
-        tech: ["Docker", "Node.js", "PostgreSQL", "AWS", "Redis"],
-        badge: "Enterprise Suite",
-        imageSrc: "/assets/images/Software-tools.avif"
+        id: "uvicon-hms",
+        title: "Uvicon HMS — All-in-One Hotel Management System",
+        category: "Hospitality & Enterprise SaaS",
+        description: "A comprehensive hotel management platform designed to automate staff management, room allocation, guest check-ins, billing, inventory tracking, and real-time income analytics.",
+        metrics: ["Staff & Shift Manager", "Real-Time Room Booking", "Income & Revenue Analytics"],
+        tech: ["React", "Node.js", "PostgreSQL", "Tailwind CSS"],
+        badge: "Hotel SaaS Platform",
+        imageSrc: "/assets/images/uvicon-hotel-management-software-screenshot.avif"
     }
 ];
 

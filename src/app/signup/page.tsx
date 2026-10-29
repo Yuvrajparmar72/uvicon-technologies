@@ -72,7 +72,7 @@ export default function SignupPage() {
         </button>
 
         <p className="mt-8 text-center text-text-secondary text-sm font-[family-name:var(--font-body)]">
-          Already have an account? <Link href="/login" className="text-brand-accent hover:text-brand-accent-hover font-semibold transition-colors">Login here</Link>
+          Already have an account? <a href="https://auth.uvicon.in" target="_blank" rel="noopener noreferrer" className="text-brand-accent hover:text-brand-accent-hover font-semibold transition-colors">Login here</a>
         </p>
       </div>
     </div>

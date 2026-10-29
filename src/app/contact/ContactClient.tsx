@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { supabase } from "@/lib/supabase";
 import {
     Sparkles,
     ShieldCheck,
@@ -112,6 +113,8 @@ export default function ContactClient() {
     });
 
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
     const [openFaqId, setOpenFaqId] = useState<string | null>(null);
 
     const toggleFaq = (id: string) => {
@@ -130,9 +133,37 @@ export default function ContactClient() {
         }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitted(true);
+        setIsSubmitting(true);
+        setSubmitError(null);
+
+        try {
+            const { error } = await supabase.from("contact_inquiries").insert([
+                {
+                    full_name: formData.fullName,
+                    email: formData.email,
+                    company: formData.company || null,
+                    service_category: formData.serviceCategory,
+                    budget_range: formData.budgetRange,
+                    timeline: formData.timeline,
+                    requirements: formData.requirements,
+                    request_nda: formData.requestNda
+                }
+            ]);
+
+            if (error) {
+                console.error("Supabase submission error:", error);
+                setSubmitError(error.message || "Failed to submit inquiry. Please try again.");
+            } else {
+                setIsSubmitted(true);
+            }
+        } catch (err: any) {
+            console.error("Submission unexpected error:", err);
+            setSubmitError("Network error. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -284,25 +315,7 @@ export default function ContactClient() {
                             </div>
 
                             <div className="flex flex-col gap-4 text-xs sm:text-sm">
-                                {/* Email */}
-                                <a
-                                    href="mailto:contact@uvicon.in"
-                                    className="p-3.5 rounded-2xl bg-white/70 dark:bg-white/5 border border-[#003D3F]/10 dark:border-white/10 hover:border-[#FFC050] transition-all flex items-center gap-3.5 group"
-                                >
-                                    <div className="w-10 h-10 rounded-xl bg-[#00595C]/10 dark:bg-[#FFC050]/15 flex items-center justify-center text-[#00595C] dark:text-[#FFC050] group-hover:scale-110 transition-transform shrink-0">
-                                        <Mail className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <span className="text-[11px] font-bold text-[#003D3F]/60 dark:text-white/60 block">
-                                            Architectural Inquiries Email
-                                        </span>
-                                        <span className="font-bold text-[#003D3F] dark:text-white group-hover:text-[#00595C] dark:group-hover:text-[#FFC050]">
-                                            contact@uvicon.in
-                                        </span>
-                                    </div>
-                                </a>
-
-                                {/* Phone Hotline */}
+                                {/* Direct Phone Hotline */}
                                 <a
                                     href="tel:+918889007424"
                                     className="p-3.5 rounded-2xl bg-white/70 dark:bg-white/5 border border-[#003D3F]/10 dark:border-white/10 hover:border-[#FFC050] transition-all flex items-center gap-3.5 group"
@@ -315,10 +328,46 @@ export default function ContactClient() {
                                             Direct Phone / WhatsApp Hotline
                                         </span>
                                         <span className="font-bold text-[#003D3F] dark:text-white group-hover:text-[#00595C] dark:group-hover:text-[#FFC050]">
-                                            +91 88890 07424
+                                            +91 8889007424
                                         </span>
                                     </div>
                                 </a>
+
+                                {/* Email */}
+                                <a
+                                    href="mailto:uvicontechnologies@gmail.com"
+                                    className="p-3.5 rounded-2xl bg-white/70 dark:bg-white/5 border border-[#003D3F]/10 dark:border-white/10 hover:border-[#FFC050] transition-all flex items-center gap-3.5 group"
+                                >
+                                    <div className="w-10 h-10 rounded-xl bg-[#00595C]/10 dark:bg-[#FFC050]/15 flex items-center justify-center text-[#00595C] dark:text-[#FFC050] group-hover:scale-110 transition-transform shrink-0">
+                                        <Mail className="w-5 h-5" />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <span className="text-[11px] font-bold text-[#003D3F]/60 dark:text-white/60 block">
+                                            Architectural Inquiries Email
+                                        </span>
+                                        <span className="font-bold text-[#003D3F] dark:text-white group-hover:text-[#00595C] dark:group-hover:text-[#FFC050] break-all block">
+                                            uvicontechnologies@gmail.com
+                                        </span>
+                                        <span className="text-[11px] text-[#003D3F]/60 dark:text-white/50 block mt-0.5">
+                                            Alt: contact@uvicon.in
+                                        </span>
+                                    </div>
+                                </a>
+
+                                {/* Office Location */}
+                                <div className="p-3.5 rounded-2xl bg-white/70 dark:bg-white/5 border border-[#003D3F]/10 dark:border-white/10 flex items-start gap-3.5">
+                                    <div className="w-10 h-10 rounded-xl bg-[#003D3F]/8 dark:bg-white/10 flex items-center justify-center text-[#00595C] dark:text-[#FFC050] shrink-0 mt-0.5">
+                                        <MapPin className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <span className="text-[11px] font-bold text-[#003D3F]/60 dark:text-white/60 block">
+                                            Engineering Studio HQ
+                                        </span>
+                                        <span className="font-bold text-[#003D3F] dark:text-white leading-snug block">
+                                            Behind Climax Academy, Panna Naka, Chhatarpur, M.P. 471001
+                                        </span>
+                                    </div>
+                                </div>
 
                                 {/* Instant Tech Desk */}
                                 <div className="p-3.5 rounded-2xl bg-white/70 dark:bg-white/5 border border-[#003D3F]/10 dark:border-white/10 flex items-center gap-3.5">
@@ -331,21 +380,6 @@ export default function ContactClient() {
                                         </span>
                                         <span className="font-bold text-emerald-600 dark:text-emerald-400">
                                             Sub-15 Minutes SLA (Live Now)
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {/* Office Location */}
-                                <div className="p-3.5 rounded-2xl bg-white/70 dark:bg-white/5 border border-[#003D3F]/10 dark:border-white/10 flex items-center gap-3.5">
-                                    <div className="w-10 h-10 rounded-xl bg-[#003D3F]/8 dark:bg-white/10 flex items-center justify-center text-[#00595C] dark:text-[#FFC050] shrink-0">
-                                        <MapPin className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <span className="text-[11px] font-bold text-[#003D3F]/60 dark:text-white/60 block">
-                                            Engineering Studio HQ
-                                        </span>
-                                        <span className="font-bold text-[#003D3F] dark:text-white">
-                                            Delhi NCR / Noida, India
                                         </span>
                                     </div>
                                 </div>
@@ -514,13 +548,22 @@ export default function ContactClient() {
                                     </label>
                                 </div>
 
+                                {submitError && (
+                                    <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-600 dark:text-red-400 text-xs font-semibold">
+                                        {submitError}
+                                    </div>
+                                )}
+
                                 {/* Submit Button */}
                                 <button
                                     type="submit"
-                                    className="w-full mt-2 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#FFC050] to-[#E6A639] text-[#002829] font-bold text-sm tracking-wide shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#FFC050] cursor-pointer"
+                                    disabled={isSubmitting}
+                                    className="w-full mt-2 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#FFC050] to-[#E6A639] text-[#002829] font-bold text-sm tracking-wide shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#FFC050] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                                 >
                                     <Send className="w-4 h-4" />
-                                    <span>Lock In Sprint Scope & Request Consultation</span>
+                                    <span>
+                                        {isSubmitting ? "Locking In Scope..." : "Lock In Sprint Scope & Request Consultation"}
+                                    </span>
                                     <ArrowUpRight className="w-4 h-4" />
                                 </button>
                             </form>

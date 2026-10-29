@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 import { testimonialsData, Testimonial } from "@/data/testimonialsData";
+import { supabase } from "@/lib/supabase";
 
 const categories = [
     "All",
@@ -93,20 +94,48 @@ function ReviewModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
         rating: 0,
     });
     const [submitted, setSubmitted] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
 
     if (!isOpen) return null;
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setSubmitted(true);
-        setTimeout(() => {
-            setSubmitted(false);
-            setFormData({ name: "", role: "", company: "", projectType: "", review: "", rating: 0 });
-            onClose();
-        }, 2500);
+        if (!isValid || submitting) return;
+        setSubmitting(true);
+        setSubmitError(null);
+
+        try {
+            const { error } = await supabase.from("testimonials").insert([
+                {
+                    name: formData.name.trim(),
+                    role: formData.role.trim() || null,
+                    company: formData.company.trim() || null,
+                    project_type: formData.projectType || null,
+                    review: formData.review.trim(),
+                    rating: formData.rating,
+                    status: "pending"
+                }
+            ]);
+
+            if (error) {
+                setSubmitError(error.message || "Failed to submit review.");
+            } else {
+                setSubmitted(true);
+                setTimeout(() => {
+                    setSubmitted(false);
+                    setFormData({ name: "", role: "", company: "", projectType: "", review: "", rating: 0 });
+                    onClose();
+                }, 2500);
+            }
+        } catch {
+            setSubmitError("Network error. Please try again.");
+        } finally {
+            setSubmitting(false);
+        }
     };
 
-    const isValid = formData.name && formData.review && formData.rating > 0;
+    const isValid = formData.name.trim() && formData.review.trim() && formData.rating > 0;
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-label="Write a review">
@@ -270,14 +299,20 @@ function ReviewModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
                             </p>
                         </div>
 
+                        {submitError && (
+                            <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-600 dark:text-red-400 text-xs font-semibold">
+                                {submitError}
+                            </div>
+                        )}
+
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            disabled={!isValid}
-                            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#00595C] hover:bg-[#003D3F] dark:bg-[#FFC050] dark:hover:bg-[#e0a840] text-white dark:text-[#002829] font-bold text-sm tracking-wide transition-all shadow-md hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-2 focus:ring-[#FFC050] focus:ring-offset-2"
+                            disabled={!isValid || submitting}
+                            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#00595C] hover:bg-[#003D3F] dark:bg-[#FFC050] dark:hover:bg-[#e0a840] text-white dark:text-[#002829] font-bold text-sm tracking-wide transition-all shadow-md hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-2 focus:ring-[#FFC050] focus:ring-offset-2 cursor-pointer"
                         >
                             <Send className="w-4 h-4" />
-                            <span>Submit Review</span>
+                            <span>{submitting ? "Submitting..." : "Submit Review"}</span>
                         </button>
                     </form>
                 )}
@@ -314,9 +349,43 @@ export default function TestimonialsSection() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    const [liveReviews, setLiveReviews] = useState<Testimonial[]>([]);
+
+    useEffect(() => {
+        async function fetchApprovedReviews() {
+            try {
+                const { data, error } = await supabase
+                    .from("testimonials")
+                    .select("*")
+                    .eq("status", "approved")
+                    .order("created_at", { ascending: false });
+
+                if (data && data.length > 0) {
+                    const formatted: Testimonial[] = data.map((d: any) => ({
+                        id: d.id,
+                        name: d.name,
+                        role: d.role || "Client",
+                        company: d.company || "",
+                        projectType: d.project_type || "Custom Project",
+                        review: d.review,
+                        rating: d.rating,
+                        date: new Date(d.created_at).toLocaleDateString("en-US", { month: "short", year: "numeric" }),
+                        avatar: d.avatar_url || "/assets/icons/user.png"
+                    }));
+                    setLiveReviews(formatted);
+                }
+            } catch (err) {
+                console.error("Error fetching approved testimonials:", err);
+            }
+        }
+        fetchApprovedReviews();
+    }, []);
+
+    const allTestimonials = [...liveReviews, ...testimonialsData];
+
     const filteredTestimonials = activeCategory === "All"
-        ? testimonialsData
-        : testimonialsData.filter((t) => t.projectType === activeCategory);
+        ? allTestimonials
+        : allTestimonials.filter((t) => t.projectType === activeCategory);
 
     const maxIndex = Math.max(0, filteredTestimonials.length - visibleCards);
 

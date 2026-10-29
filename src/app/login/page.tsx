@@ -50,9 +50,14 @@ export default function LoginPage() {
             <Link href="#" className="text-brand-accent hover:text-brand-accent-hover transition-colors">Forgot Password?</Link>
           </div>
 
-          <button type="button" className="w-full h-12 mt-2 bg-gradient-to-r from-brand-accent to-brand-accent-hover hover:opacity-90 text-[#021213] font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(255,192,80,0.3)]">
+          <a
+            href="https://auth.uvicon.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full h-12 mt-2 bg-gradient-to-r from-brand-accent to-brand-accent-hover hover:opacity-90 text-[#021213] font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(255,192,80,0.3)]"
+          >
             Login <ArrowRight className="w-5 h-5" />
-          </button>
+          </a>
         </form>
 
         <div className="mt-6 flex items-center gap-4 before:flex-1 before:h-px before:bg-border/50 after:flex-1 after:h-px after:bg-border/50">

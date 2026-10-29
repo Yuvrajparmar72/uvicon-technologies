@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck, Mail, ArrowRight } from "lucide-react";
+import { ShieldCheck, Mail, ArrowRight, Phone } from "lucide-react";
 import Link from "next/link";
 
 export default function RefundPolicyClient() {
@@ -128,10 +128,16 @@ export default function RefundPolicyClient() {
 
                         <div className="pt-8 border-t border-[#003D3F]/10 dark:border-white/10 mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                             <div>
-                                <h2 className="text-lg font-bold text-[#003D3F] dark:text-white mb-2">Billing Support</h2>
-                                <div className="flex items-center gap-3 font-medium">
-                                    <Mail className="w-5 h-5 text-[#FFC050]" />
-                                    <a href="mailto:billing@uvicon.in" className="hover:text-[#00595C] dark:hover:text-[#3FC1B8] transition-colors">billing@uvicon.in</a>
+                                <h2 className="text-lg font-bold text-[#003D3F] dark:text-white mb-2">Billing & Support Desk</h2>
+                                <div className="flex flex-col gap-2 font-medium text-sm">
+                                    <div className="flex items-center gap-3">
+                                        <Phone className="w-4 h-4 text-[#FFC050] shrink-0" />
+                                        <a href="tel:+918889007424" className="hover:text-[#00595C] dark:hover:text-[#3FC1B8] transition-colors">+91 8889007424</a>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Mail className="w-4 h-4 text-[#FFC050] shrink-0" />
+                                        <a href="mailto:uvicontechnologies@gmail.com" className="hover:text-[#00595C] dark:hover:text-[#3FC1B8] transition-colors">uvicontechnologies@gmail.com</a>
+                                    </div>
                                 </div>
                             </div>
                             
