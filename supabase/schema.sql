@@ -226,3 +226,70 @@ CREATE POLICY "Allow full access to service_role on newsletter_subscribers"
 
 CREATE POLICY "Allow full access to service_role on quote_estimates"
     ON public.quote_estimates TO service_role USING (true) WITH CHECK (true);
+
+-- ============================================================================
+-- 8. LIGHTWEIGHT SINGLE-ROW DAILY SITE METRICS TABLE
+-- Purpose: 100% Zero-Load aggregated page views & top page per day.
+-- Instead of millions of rows, exactly 1 row per day is maintained.
+-- ============================================================================
+
+CREATE TABLE IF NOT EXISTS public.site_metrics (
+    date DATE PRIMARY KEY DEFAULT CURRENT_DATE,
+    total_views INTEGER NOT NULL DEFAULT 1,
+    unique_visitors INTEGER NOT NULL DEFAULT 1,
+    page_counts JSONB NOT NULL DEFAULT '{}'::jsonb,
+    top_page TEXT NOT NULL DEFAULT '/',
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE public.site_metrics ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public read site_metrics"
+    ON public.site_metrics FOR SELECT
+    TO anon, authenticated, service_role
+    USING (true);
+
+CREATE POLICY "Allow public all access on site_metrics"
+    ON public.site_metrics FOR ALL
+    TO anon, authenticated, service_role
+    USING (true)
+    WITH CHECK (true);
+
+-- Atomic stored procedure to record page views with zero overhead
+CREATE OR REPLACE FUNCTION public.record_page_view(p_path TEXT, p_is_new_session BOOLEAN DEFAULT FALSE)
+RETURNS VOID AS $$
+DECLARE
+    today_date DATE := CURRENT_DATE;
+    clean_path TEXT := COALESCE(NULLIF(p_path, ''), '/');
+BEGIN
+    INSERT INTO public.site_metrics (date, total_views, unique_visitors, page_counts, top_page, updated_at)
+    VALUES (
+        today_date,
+        1,
+        CASE WHEN p_is_new_session THEN 1 ELSE 0 END,
+        jsonb_build_object(clean_path, 1),
+        clean_path,
+        NOW()
+    )
+    ON CONFLICT (date) DO UPDATE
+    SET 
+        total_views = site_metrics.total_views + 1,
+        unique_visitors = site_metrics.unique_visitors + (CASE WHEN p_is_new_session THEN 1 ELSE 0 END),
+        page_counts = jsonb_set(
+            site_metrics.page_counts,
+            ARRAY[clean_path],
+            to_jsonb(COALESCE((site_metrics.page_counts->>clean_path)::int, 0) + 1),
+            true
+        ),
+        updated_at = NOW();
+
+    -- Automatically select and update top_page based on maximum views today
+    UPDATE public.site_metrics
+    SET top_page = (
+        SELECT key FROM jsonb_each_text(page_counts)
+        ORDER BY value::int DESC LIMIT 1
+    )
+    WHERE date = today_date;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+

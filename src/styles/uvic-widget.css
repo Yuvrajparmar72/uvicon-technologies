@@ -1,0 +1,510 @@
+/* ==========================================================================
+   UVIC AI WIDGET & 3D ROBOT STYLES (UVICON TECHNOLOGIES)
+   Exact match to Uvicon Pro signature aesthetics & animations
+   ========================================================================== */
+
+/* ── Container & Launcher ── */
+.uvic-widget-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  font-family: inherit;
+}
+
+.uvic-launcher-btn {
+  background: transparent;
+  border: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  user-select: none;
+}
+
+.uvic-launcher-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.uvic-robot-stage {
+  position: relative;
+  width: 76px;
+  height: 114px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Pill badge placed directly close under the robot dummy */
+.uvic-launcher-pill {
+  margin-top: -18px;
+  position: relative;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+  background: rgba(0, 26, 27, 0.95);
+  color: #E0F2F1;
+  border: 1px solid rgba(43, 168, 160, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 4px 11px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), 0 0 10px rgba(43, 168, 160, 0.25);
+  transition: all 0.25s ease;
+  pointer-events: auto;
+}
+
+.uvic-launcher-btn:hover .uvic-launcher-pill {
+  background: rgba(0, 43, 45, 0.98);
+  border-color: rgba(29, 233, 182, 0.85);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 18px rgba(29, 233, 182, 0.45);
+  color: #FFFFFF;
+}
+
+.uvic-pill-text {
+  line-height: 1;
+}
+
+/* Backward compatibility */
+.uvic-launcher-badge {
+  display: none;
+}
+
+.uvic-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1DE9B6;
+  box-shadow: 0 0 8px #1DE9B6;
+  animation: uvicDotGlow 1.8s infinite;
+}
+
+@keyframes uvicDotGlow {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ── CSS 3D Robot ── */
+.css-robot {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -100px;
+  width: 200px;
+  height: 350px;
+  transform: scale(0.35);
+  transform-origin: bottom center;
+  filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.3));
+  animation: float-robot 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.head-group {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 120px;
+  z-index: 10;
+}
+
+.head-shape {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 30%, #ffffff 0%, #e0f2f1 50%, #b2dfdb 100%);
+  border-radius: 65px;
+  box-shadow: inset 2px 2px 5px #fff, 0 15px 35px rgba(0, 77, 64, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.ear {
+  position: absolute;
+  top: -15px;
+  width: 34px;
+  height: 45px;
+  background: linear-gradient(135deg, #ffffff 20%, #b2dfdb 100%);
+  border-radius: 10px 10px 0 0;
+  z-index: 1;
+}
+
+.ear.left {
+  left: 20px;
+  transform: rotate(-15deg);
+}
+
+.ear.right {
+  right: 20px;
+  transform: rotate(15deg);
+}
+
+.face-screen {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 80px;
+  background: #00251a;
+  border-radius: 45px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 20px #000;
+}
+
+.eyes-container {
+  display: flex;
+  gap: 20px;
+  animation: blink-robot 4s infinite;
+}
+
+.eye {
+  width: 28px;
+  height: 18px;
+  border-top: 6px solid #1de9b6;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 -2px 12px rgba(29, 233, 182, 0.8);
+}
+
+.cheek {
+  position: absolute;
+  bottom: 25px;
+  width: 12px;
+  height: 6px;
+  background: rgba(255, 100, 100, 0.3);
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.cheek.left { left: 25px; }
+.cheek.right { right: 25px; }
+
+.neck {
+  position: absolute;
+  top: 115px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 30px;
+  background: #004d40;
+  border-radius: 10px;
+  z-index: 4;
+}
+
+.torso {
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 140px;
+  background: radial-gradient(circle at 75% 25%, #ffffff 0%, #e0f2f1 50%, #b2dfdb 100%);
+  border-radius: 50px 50px 60px 60px;
+  z-index: 5;
+  box-shadow: inset 3px 3px 8px #fff, 0 15px 30px rgba(0, 77, 64, 0.2);
+}
+
+.glow-strip {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 5px;
+  background: #1de9b6;
+  border-radius: 3px;
+  box-shadow: 0 0 15px #1de9b6;
+  animation: glow-pulse 2s infinite alternate;
+}
+
+.arm {
+  position: absolute;
+  top: 145px;
+  width: 40px;
+  height: 90px;
+  background: #fff;
+  border-radius: 20px;
+  z-index: 4;
+  box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.arm.left {
+  left: 10px;
+  transform: rotate(8deg);
+  transform-origin: top center;
+}
+
+.arm.right {
+  right: 10px;
+  transform: rotate(-8deg);
+  transform-origin: top center;
+}
+
+.shadow-g {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 18px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  filter: blur(6px);
+  animation: shadow-move 6s ease-in-out infinite;
+}
+
+@keyframes float-robot {
+  0%, 100% {
+    transform: scale(0.35) translateY(0);
+  }
+  50% {
+    transform: scale(0.35) translateY(-30px);
+  }
+}
+
+@keyframes shadow-move {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.75);
+    opacity: 0.15;
+  }
+}
+
+@keyframes blink-robot {
+  0%, 48%, 52%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes glow-pulse {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* ── Chat Window Modal ── */
+.uvic-chat-modal {
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  height: 580px;
+  max-height: calc(100vh - 100px);
+  background: rgba(2, 18, 20, 0.95);
+  border: 1px solid rgba(43, 168, 160, 0.35);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(43, 168, 160, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: uvicModalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes uvicModalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header */
+.uvic-chat-header {
+  padding: 14px 18px;
+  background: linear-gradient(180deg, rgba(0, 48, 50, 0.75) 0%, rgba(0, 24, 26, 0.4) 100%);
+  border-bottom: 1px solid rgba(43, 168, 160, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Typing indicator */
+.uvic-typing-dot {
+  width: 7px;
+  height: 7px;
+  background: #1DE9B6;
+  border-radius: 50%;
+  animation: uvicTypingPulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes uvicTypingPulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+/* Scrollbar */
+.uvic-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.uvic-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.uvic-scroll::-webkit-scrollbar-thumb {
+  background: rgba(43, 168, 160, 0.25);
+  border-radius: 10px;
+}
+.uvic-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(43, 168, 160, 0.5);
+}
+
+/* ── Voice Mode Orb & Rings ── */
+.uvic-voice-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease;
+}
+
+.uvic-voice-ring-1 {
+  width: 86px;
+  height: 86px;
+  border-color: rgba(43, 168, 160, 0.15);
+}
+.uvic-voice-ring-2 {
+  width: 112px;
+  height: 112px;
+  border-color: rgba(43, 168, 160, 0.1);
+}
+.uvic-voice-ring-3 {
+  width: 138px;
+  height: 138px;
+  border-color: rgba(43, 168, 160, 0.05);
+}
+
+/* Listening state - cyan pulse */
+.uvic-voice-ring-1.listening {
+  border-color: rgba(29, 233, 182, 0.45);
+  animation: uvicRingPulse1 1.4s ease-in-out infinite;
+}
+.uvic-voice-ring-2.listening {
+  border-color: rgba(29, 233, 182, 0.3);
+  animation: uvicRingPulse2 1.4s ease-in-out infinite 0.15s;
+}
+.uvic-voice-ring-3.listening {
+  border-color: rgba(29, 233, 182, 0.15);
+  animation: uvicRingPulse3 1.4s ease-in-out infinite 0.3s;
+}
+
+/* Speaking state - purple/gold pulse */
+.uvic-voice-ring-1.speaking {
+  border-color: rgba(124, 77, 255, 0.45);
+  animation: uvicRingSpeakPulse1 0.8s ease-in-out infinite;
+}
+.uvic-voice-ring-2.speaking {
+  border-color: rgba(124, 77, 255, 0.3);
+  animation: uvicRingSpeakPulse2 0.8s ease-in-out infinite 0.1s;
+}
+.uvic-voice-ring-3.speaking {
+  border-color: rgba(124, 77, 255, 0.15);
+  animation: uvicRingSpeakPulse3 0.8s ease-in-out infinite 0.2s;
+}
+
+/* Processing state - gold rotating */
+.uvic-voice-ring-1.processing {
+  border-color: rgba(255, 192, 80, 0.3);
+  border-top-color: #FFC050;
+  animation: uvicRingSpin 1.2s linear infinite;
+}
+.uvic-voice-ring-2.processing {
+  border-color: rgba(255, 192, 80, 0.15);
+  border-bottom-color: #FFC050;
+  animation: uvicRingSpin 1.6s linear infinite reverse;
+}
+.uvic-voice-ring-3.processing {
+  border-color: rgba(255, 192, 80, 0.08);
+  border-left-color: rgba(255, 192, 80, 0.5);
+  animation: uvicRingSpin 2s linear infinite;
+}
+
+@keyframes uvicRingPulse1 {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.12); opacity: 0.6; }
+}
+@keyframes uvicRingPulse2 {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.5; }
+}
+@keyframes uvicRingPulse3 {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.4; }
+}
+@keyframes uvicRingSpeakPulse1 {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.18); }
+}
+@keyframes uvicRingSpeakPulse2 {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.14); }
+}
+@keyframes uvicRingSpeakPulse3 {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+@keyframes uvicRingSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ── Mobile Responsiveness ── */
+@media (max-width: 640px) {
+  .uvic-widget-container {
+    bottom: 16px;
+    right: 14px;
+  }
+  .uvic-robot-stage {
+    width: 64px;
+    height: 86px;
+  }
+  .css-robot {
+    transform: scale(0.26);
+  }
+  @keyframes float-robot {
+    0%, 100% { transform: scale(0.26) translateY(0); }
+    50% { transform: scale(0.26) translateY(-14px); }
+  }
+  .uvic-launcher-pill {
+    margin-top: -14px;
+    font-size: 10px;
+    padding: 3.5px 9px;
+    gap: 5px;
+  }
+  .uvic-chat-modal {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    max-width: 100vw;
+    height: calc(100dvh - 50px);
+    max-height: calc(100dvh - 50px);
+    border-radius: 20px 20px 0 0;
+    border-bottom: none;
+  }
+}
+

@@ -48,6 +48,9 @@ export const metadata: Metadata = {
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageTransitionCurtain from "@/components/layout/PageTransitionCurtain";
+import CookieConsentBanner from "@/components/layout/CookieConsentBanner";
+import LiveTelemetryTracker from "@/components/analytics/LiveTelemetryTracker";
+import UvicWidget from "@/components/chat/UvicWidget";
 
 export default function RootLayout({
   children,
@@ -61,9 +64,12 @@ export default function RootLayout({
     >
       <body className="bg-background text-text-primary antialiased selection:bg-brand-accent selection:text-text-primary">
         <PageTransitionCurtain />
+        <LiveTelemetryTracker />
         <Header />
         {children}
         <Footer />
+        <CookieConsentBanner />
+        <UvicWidget />
       </body>
     </html>
   );

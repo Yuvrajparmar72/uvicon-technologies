@@ -754,6 +754,33 @@ export default function PricingPageClient() {
     const [showMoreDesc, setShowMoreDesc] = useState(false);
     const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
+    // Live synced category pricing (synced with Supabase / Uvicon Desk)
+    const [liveCategoryData, setLiveCategoryData] = useState<Record<string, CategoryInfo>>(categoryData);
+
+    useEffect(() => {
+        let isMounted = true;
+        const fetchLivePricing = async () => {
+            try {
+                const res = await fetch("/api/pricing", { cache: "no-store" });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.success && data.categories && isMounted) {
+                    setLiveCategoryData(prev => ({
+                        ...prev,
+                        ...data.categories
+                    }));
+                }
+            } catch (e) {
+                console.error("Failed to fetch live pricing:", e);
+            }
+        };
+        fetchLivePricing();
+        return () => { isMounted = false; };
+    }, []);
+
+    // Active category object (with robust fallback to static default)
+    const activeCategory = liveCategoryData[selectedOption] || categoryData[selectedOption];
+
     // Reset "More" toggle when category changes
     useEffect(() => {
         setShowMoreDesc(false);
@@ -1420,7 +1447,7 @@ export default function PricingPageClient() {
             </div>
 
             {/* ===== DYNAMIC CATEGORY CONTENT SECTION ===== */}
-            {categoryData[selectedOption] && (
+            {activeCategory && (
                 <section className="w-full relative z-40 px-4 sm:px-8 lg:px-16 pt-2 sm:pt-4 lg:pt-6 pb-16 sm:pb-20 lg:pb-28">
                     <div className="max-w-6xl mx-auto">
 
@@ -1438,7 +1465,7 @@ export default function PricingPageClient() {
                                     {selectedOption.split(" ").map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(" ")}
                                 </h2>
                                 <p className="text-[#003D3F]/75 dark:text-white/65 text-sm sm:text-base md:text-lg leading-relaxed font-[family-name:var(--font-body)]">
-                                    {categoryData[selectedOption].shortDesc}
+                                    {activeCategory.shortDesc}
                                     {!showMoreDesc && (
                                         <button
                                             onClick={() => setShowMoreDesc(true)}
@@ -1458,7 +1485,7 @@ export default function PricingPageClient() {
                                             className="overflow-hidden"
                                         >
                                             <p className="text-[#003D3F]/65 dark:text-white/55 text-sm sm:text-base leading-relaxed mt-3 font-[family-name:var(--font-body)]">
-                                                {categoryData[selectedOption].fullDesc}
+                                                {activeCategory.fullDesc}
                                             </p>
                                             <button
                                                 onClick={() => setShowMoreDesc(false)}
@@ -1472,7 +1499,7 @@ export default function PricingPageClient() {
 
                                 {/* Highlight Pills */}
                                 <div className="flex flex-wrap gap-2 mt-4 sm:mt-5">
-                                    {categoryData[selectedOption].highlights.map((h, i) => (
+                                    {activeCategory.highlights.map((h, i) => (
                                         <span key={i} className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider bg-[#00595C]/10 dark:bg-[#3FC1B8]/10 text-[#00595C] dark:text-[#3FC1B8] border border-[#00595C]/20 dark:border-[#3FC1B8]/20 shadow-sm backdrop-blur-sm">
                                             <Sparkles className="w-3.5 h-3.5" />
                                             {h}
@@ -1492,7 +1519,7 @@ export default function PricingPageClient() {
                                 transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                                 className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-6 lg:gap-8 mb-12 sm:mb-16 justify-items-center md:justify-items-stretch pt-4"
                             >
-                                {categoryData[selectedOption].tiers.map((tier, idx) => (
+                                {activeCategory.tiers.map((tier, idx) => (
                                     <motion.div
                                         key={tier.name}
                                         initial={{ opacity: 0, y: 20, scale: 0.97 }}
@@ -1625,7 +1652,7 @@ export default function PricingPageClient() {
                                     Why Choose Uvicon for {selectedOption.split(" ").map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(" ")}?
                                 </h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-6 sm:mb-8">
-                                    {categoryData[selectedOption].highlights.map((h, i) => (
+                                    {activeCategory.highlights.map((h, i) => (
                                         <div key={i} className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-white/60 dark:bg-white/5 border border-[#003D3F]/8 dark:border-white/8">
                                             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#00595C]/10 dark:bg-[#3FC1B8]/10 flex items-center justify-center shrink-0">
                                                 <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#00595C] dark:text-[#3FC1B8]" />
