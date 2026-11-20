@@ -52,6 +52,7 @@ export default function UvicWidget() {
   const recognitionRef = useRef<any>(null);
   const silenceTimerRef = useRef<any>(null);
   const isVoiceModeActiveRef = useRef(false);
+  const audioPlayerRef = useRef<HTMLAudioElement | null>(null);
 
   // Initialize Session ID & Load History from localStorage
   useEffect(() => {
@@ -168,6 +169,10 @@ export default function UvicWidget() {
 
   // Voice Mode Start
   const startVoiceListening = useCallback(() => {
+    if (audioPlayerRef.current) {
+      audioPlayerRef.current.pause();
+      audioPlayerRef.current = null;
+    }
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
     }
@@ -245,6 +250,61 @@ export default function UvicWidget() {
       window.speechSynthesis.speak(utterance);
     },
     [audioMuted, startVoiceListening]
+  );
+
+  // Play High-Fidelity Audio from Gemini TTS
+  const playDirectAudio = useCallback(
+    (base64WavAudio: string, fallbackText: string) => {
+      if (audioMuted || typeof window === "undefined") {
+        setVoiceState("idle");
+        return;
+      }
+
+      if (audioPlayerRef.current) {
+        audioPlayerRef.current.pause();
+        audioPlayerRef.current = null;
+      }
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+
+      try {
+        const audioUrl = `data:audio/wav;base64,${base64WavAudio}`;
+        const audio = new Audio(audioUrl);
+        audioPlayerRef.current = audio;
+
+        audio.onplay = () => {
+          setVoiceState("speaking");
+        };
+
+        audio.onended = () => {
+          audioPlayerRef.current = null;
+          if (isVoiceModeActiveRef.current) {
+            setVoiceState("idle");
+            setTimeout(() => {
+              if (isVoiceModeActiveRef.current) {
+                startVoiceListening();
+              }
+            }, 600);
+          } else {
+            setVoiceState("idle");
+          }
+        };
+
+        audio.onerror = () => {
+          audioPlayerRef.current = null;
+          speakText(fallbackText);
+        };
+
+        audio.play().catch((playErr) => {
+          console.warn("Direct audio play prevented, falling back to TTS:", playErr);
+          speakText(fallbackText);
+        });
+      } catch {
+        speakText(fallbackText);
+      }
+    },
+    [audioMuted, speakText, startVoiceListening]
   );
 
   // Send Message API
@@ -348,8 +408,12 @@ export default function UvicWidget() {
       };
       setMessages((prev) => [...prev, botMsg]);
 
-      // Speak response
-      speakText(spoken);
+      // Play natural Gemini TTS audio if available, else fallback to browser TTS
+      if (data?.audio) {
+        playDirectAudio(data.audio, spoken);
+      } else {
+        speakText(spoken);
+      }
     } catch (e) {
       console.error("Voice chat error:", e);
       setVoiceState("idle");
@@ -362,6 +426,10 @@ export default function UvicWidget() {
       setVoiceMode(true);
       startVoiceListening();
     } else {
+      if (audioPlayerRef.current) {
+        audioPlayerRef.current.pause();
+        audioPlayerRef.current = null;
+      }
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.cancel();
       }
@@ -518,6 +586,10 @@ export default function UvicWidget() {
               <button
                 onClick={() => {
                   setIsOpen(false);
+                  if (audioPlayerRef.current) {
+                    audioPlayerRef.current.pause();
+                    audioPlayerRef.current = null;
+                  }
                   if (typeof window !== "undefined" && "speechSynthesis" in window) {
                     window.speechSynthesis.cancel();
                   }
